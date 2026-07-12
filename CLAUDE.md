@@ -64,8 +64,10 @@ balloons)** · **5 AI image/video (OpenArt)** · 6 data/Firecrawl · 7 design ex
 
 ## Metrics methodology (per-level cost & time)
 
-Data mined from Claude Code session transcripts in
-`~/.claude/projects/-Users-chizhang-experimental-design-yellow-iphone-web-{fable,opus}-trials/*.jsonl`.
+Data mined from Claude Code session transcripts, now consolidated in
+`~/.claude/projects/-Users-chizhang-experimental-design-yellow-iphone-web/*.jsonl`
+(moved there from the per-trial project dirs on 2026-07-12; the tutorial-building
+session `2cbfdd25` remains in the `...-fable-trials` project dir).
 
 - **Session→level map** (start timestamps, all 2026-07-12 UTC):
   - Fable: `ee515a1e` L1 04:54:24, L2 05:02:19 · `fea341bc` L3 05:17:40, L4 05:36:58,
