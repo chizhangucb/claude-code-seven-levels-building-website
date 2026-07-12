@@ -271,7 +271,7 @@ name the file as yellow-iphone-web-level-1.html</blockquote></section>
 <section class="slide"><p class="kicker">Fable vs Opus · The bill</p>
 <h2>What each level cost — and how long it took</h2>
 <div class="charts" id="metrics-charts"></div>
-<p class="big" style="font-size:.72em">API-equivalent cost at list price (Fable 5 $10/$50 · Opus 4.8 $5/$25 per MTok, 1-hour-TTL prompt caching), mined from the session transcripts. Time is wall-clock per level, including human think-time; Fable's level 7 includes the level-6 recovery.</p></section>
+<p class="big" style="font-size:.72em">API-equivalent cost at list price (Fable 5 $10/$50 · Opus 4.8 $5/$25 per MTok, 1-hour-TTL prompt caching), mined from the session transcripts. Time is machine time only — AI thinking + tool use; human think-time between prompts is excluded. Fable's level 7 includes the level-6 recovery.</p></section>
 
 <section class="slide"><p class="kicker">Fable vs Opus · Methodology</p>
 <h2>Only one variable: the model</h2>
@@ -340,7 +340,7 @@ name the file as yellow-iphone-web-level-1.html</blockquote></section>
 (function () {
   const M = {
     cost: { title: "API-equivalent cost ($)", fable: [5.26, 8.97, 22.05, 22.68, 4.93, 9.51, 28.73], opus: [0.72, 3.18, 4.35, 8.54, 3.50, 8.94, 6.69], fmt: v => "$" + v.toFixed(v < 10 ? 2 : 0) },
-    time: { title: "Wall-clock time (minutes)", fable: [6.6, 15.8, 17.1, 18.2, 5.4, 10.9, 69.4], opus: [1.5, 7.1, 10.0, 15.5, 4.3, 22.7, 18.8], fmt: v => Math.round(v) + "m" },
+    time: { title: "Machine time (minutes)", fable: [6.6, 10.1, 17.1, 15.7, 5.3, 10.9, 30.7], opus: [1.4, 6.7, 9.8, 11.8, 4.3, 10.4, 16.9], fmt: v => Math.round(v) + "m" },
   };
   const host = document.getElementById("metrics-charts");
   if (!host) return;
