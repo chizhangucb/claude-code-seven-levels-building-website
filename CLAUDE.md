@@ -37,7 +37,7 @@ balloons)** · **5 AI image/video (OpenArt)** · 6 data/Firecrawl · 7 design ex
 | `demos/fable/`, `demos/opus/` | The 14 verbatim level demos (immutable evidence, SHA-256 checksummed in README) |
 | `docs/prompt-log/level-N.md` | Curated per-level prompts + outcomes (mined from transcripts) |
 | `docs/talk-outline.md`, `docs/seven-levels-talk.pptx` | Talk materials — **pptx is STALE** (predates tool-links, summary-table, and metrics slides; regenerate via anthropic-skills:pptx if asked) |
-| `fable-trials/`, `opus-trials/` | Raw working dirs from the original runs (reference PNGs, OpenArt mp4, design-language skill, Firecrawl artifacts) |
+| ~~`fable-trials/`, `opus-trials/`~~ | Raw working dirs from the original runs — **deleted 2026-07-12** (were gitignored/local-only; every file was verified byte-identical to its canonical copy in `demos/`, `skill/`, `references/`, `process-artifacts/`). An empty `fable-trials/` shell may linger as a past session's cwd — safe to delete. |
 | `skill/design-language/` | The level-7 extraction skill; `/skill/` has no index.html so link to the GitHub tree, not the path |
 
 ## Deploy pipeline
