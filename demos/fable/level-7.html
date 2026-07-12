@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lume — beautiful phones in colors you can feel</title>
+<!--
+  Built from the antigravity.google design-language kit (level 6).
+  Type system: opsz axis matched to px size, weight 450, pixel line-heights.
+  Font: Roboto Flex (public stand-in for Google Sans Flex — same opsz 8-144 + wdth axes).
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,300..700&family=Roboto+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+/* ============ TOKENS — verbatim from source :root ============ */
+:root{
+  --palette-grey-0:#FFFFFF; --palette-grey-10:#F8F9FC; --palette-grey-15:#F0F1F5;
+  --palette-grey-20:#EFF2F7; --palette-grey-50:#E6EAF0; --palette-grey-100:#E1E6EC;
+  --palette-grey-200:#CDD4DC; --palette-grey-300:#B2BBC5; --palette-grey-400:#B7BFD9;
+  --palette-grey-800:#45474D; --palette-grey-900:#2F3034; --palette-grey-1000:#212226;
+  --palette-grey-1100:#18191D; --palette-grey-1200:#121317;
+  --palette-grey-0-rgb:255,255,255; --palette-grey-400-rgb:183,191,217;
+  --palette-grey-1000-rgb:33,34,38; --palette-grey-1200-rgb:18,19,23;
+  --palette-grey-50-rgb:230,234,240;
+
+  /* Lume accent — Solar Yellow (replaces source blue #3279F9, used like ink) */
+  --accent:#F5B800;
+  --accent-deep:#D99E00;
+  --accent-light:#FFD34D;
+
+  --surface:var(--palette-grey-0);
+  --on-surface:var(--palette-grey-1200);
+  --on-surface-variant:var(--palette-grey-800);
+  --surface-container:var(--palette-grey-10);
+  --surface-container-high:var(--palette-grey-20);
+  --inverse-surface:var(--palette-grey-1200);
+  --inverse-on-surface:var(--palette-grey-10);
+  --inverse-on-surface-variant:var(--palette-grey-300);
+  --outline:rgba(var(--palette-grey-1000-rgb),.12);
+  --outline-variant:rgba(var(--palette-grey-1000-rgb),.06);
+  --inverse-outline:rgba(var(--palette-grey-50-rgb),.12);
+  --inverse-outline-variant:rgba(var(--palette-grey-50-rgb),.06);
+  --secondary-button:rgba(var(--palette-grey-400-rgb),.1);
+  --secondary-button-inverse:rgba(var(--palette-grey-400-rgb),.2);
+  --nav-surface:rgba(var(--palette-grey-0-rgb),.85);
+
+  /* type scale — PIXEL line-heights, verbatim */
+  --landing-main-text-size:107px; --landing-main-text-line-height:107px; --landing-main-text-letter-spacing:-2.14px;
+  --9xl-size:148px; --9xl-line-height:145.04px; --9xl-letter-spacing:-2.96px;
+  --7xl-size:98px;  --7xl-line-height:82.04px;  --7xl-letter-spacing:-1.8px;
+  --6xl-size:72px;  --6xl-line-height:72px;     --6xl-letter-spacing:-1.44px;
+  --5xl-size:54px;  --5xl-line-height:56.16px;  --5xl-letter-spacing:-.95px;
+  --4xl-size:42px;  --4xl-line-height:43.68px;  --4xl-letter-spacing:-.73px;
+  --3xl-size:32px;  --3xl-line-height:33.92px;  --3xl-letter-spacing:-.15px;
+  --2xl-size:28px;  --2xl-line-height:30.24px;  --2xl-letter-spacing:-.1px;
+  --xl-size:24px;   --xl-line-height:25.92px;   --xl-letter-spacing:-.07px;
+  --md-size:20px;   --md-line-height:26px;      --md-letter-spacing:-.05px;
+  --base-size:17.5px; --base-line-height:25.38px; --base-letter-spacing:.18px;
+  --sm-size:14.5px; --sm-line-height:21.02px;   --sm-letter-spacing:.16px;
+  --xs-size:12.5px; --xs-line-height:15.5px;    --xs-letter-spacing:.11px;
+  --cta-size:17.5px; --cta-line-height:25.38px; --cta-letter-spacing:.18px;
+  --cta-sm-size:14.5px; --cta-sm-line-height:21.02px; --cta-sm-letter-spacing:.11px;
+
+  --space-xs:4px; --space-sm:8px; --space-md:16px; --space-lg:24px;
+  --space-xl:36px; --space-2xl:48px; --space-3xl:60px; --space-4xl:80px;
+  --space-5xl:88px; --space-6xl:120px; --space-7xl:180px;
+  --page-margin:72px;
+
+  --shape-corner-xs:4px; --shape-corner-sm:8px; --shape-corner-md:16px;
+  --shape-corner-lg:24px; --shape-corner-xl:36px; --shape-corner-2xl:48px;
+  --shape-corner-rounded:9999px;
+
+  --nav-height:52px; --grid-gutter:64px;
+
+  --ease-out-expo:cubic-bezier(.19,1,.22,1);
+  --ease-out-quint:cubic-bezier(.23,1,.32,1);
+  --ease-out-quart:cubic-bezier(.165,.84,.44,1);
+  --ease-out-back:cubic-bezier(.34,1.85,.64,1);
+  --ease-in-out-quart:cubic-bezier(.77,0,.175,1);
+
+  --font-sans:"Roboto Flex","Google Sans Flex","Google Sans",sans-serif;
+  --font-mono:"Roboto Mono","Google Sans Code",monospace;
+}
+
+/* ============ BASE ============ */
+*,*:before,*:after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--font-sans);
+  font-size:var(--base-size); line-height:var(--base-line-height); letter-spacing:var(--base-letter-spacing);
+  font-weight:400; font-variation-settings:"wdth" 100,"opsz" 17.5;
+  color:var(--on-surface); background:var(--surface);
+  -webkit-font-smoothing:antialiased;
+}
+img,video{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+
+.container{max-width:calc(1728px + var(--page-margin) * 2);margin:0 auto;padding:0 var(--page-margin)}
+
+/* ============ TYPE LADDER — weight 450 + opsz matched to px size ============ */
+.landing-main{font-size:var(--landing-main-text-size);line-height:var(--landing-main-text-line-height);letter-spacing:var(--landing-main-text-letter-spacing);font-weight:450;font-variation-settings:"wdth" 100,"opsz" 144}
+.heading-1{font-size:var(--7xl-size);line-height:var(--7xl-line-height);letter-spacing:var(--7xl-letter-spacing);font-weight:450;font-variation-settings:"wdth" 100,"opsz" 98}
+.heading-2{font-size:var(--6xl-size);line-height:var(--6xl-line-height);letter-spacing:var(--6xl-letter-spacing);font-weight:450;font-variation-settings:"wdth" 100,"opsz" 72}
+.heading-3{font-size:var(--5xl-size);line-height:var(--5xl-line-height);letter-spacing:var(--5xl-letter-spacing);font-weight:450;font-variation-settings:"wdth" 100,"opsz" 54}
+.heading-5{font-size:var(--3xl-size);line-height:var(--3xl-line-height);letter-spacing:var(--3xl-letter-spacing);font-weight:450;font-variation-settings:"wdth" 100,"opsz" 32}
+.heading-6{font-size:var(--2xl-size);line-height:var(--2xl-line-height);letter-spacing:var(--2xl-letter-spacing);font-weight:450;font-variation-settings:"wdth" 100,"opsz" 28}
+.heading-7{font-size:var(--xl-size);line-height:var(--xl-line-height);letter-spacing:var(--xl-letter-spacing);font-weight:450;font-variation-settings:"wdth" 100,"opsz" 24}
+.body{font-size:var(--base-size);line-height:var(--base-line-height);letter-spacing:var(--base-letter-spacing);font-weight:400;font-variation-settings:"wdth" 100,"opsz" 17.5}
+.body-lg{font-size:var(--md-size);line-height:var(--md-line-height);letter-spacing:var(--md-letter-spacing);font-weight:400;font-variation-settings:"wdth" 100,"opsz" 20}
+.caption{font-size:var(--sm-size);line-height:var(--sm-line-height);letter-spacing:var(--sm-letter-spacing);font-weight:400;font-variation-settings:"wdth" 100,"opsz" 15;color:var(--on-surface-variant)}
+.eyebrow{font-family:var(--font-mono);font-size:var(--xs-size);line-height:var(--xs-line-height);letter-spacing:.08em;text-transform:uppercase;color:var(--on-surface-variant)}
+.lede{max-width:38ch;color:var(--on-surface-variant)}
+p{max-width:60ch}
+
+/* ============ BUTTONS ============ */
+.button{display:inline-flex;align-items:center;justify-content:center;gap:var(--space-sm);
+  border-radius:var(--shape-corner-rounded);border:1px solid transparent;cursor:pointer;
+  font-family:var(--font-sans);font-size:var(--cta-size);line-height:var(--cta-line-height);letter-spacing:var(--cta-letter-spacing);
+  font-weight:450;font-variation-settings:"wdth" 100,"opsz" 17.5;
+  padding:10px 24px;transition:.15s ease-out;white-space:nowrap}
+.button-primary{background:var(--palette-grey-1200);color:#fff}
+.button-primary:hover{background:var(--palette-grey-900)}
+.button-secondary{background:var(--secondary-button);color:var(--on-surface);border-color:var(--outline-variant);backdrop-filter:blur(6px)}
+.button-secondary:hover{background:var(--palette-grey-15)}
+.button-primary-inverse{background:#fff;color:var(--palette-grey-1200)}
+.button-secondary-inverse{background:var(--secondary-button-inverse);color:#fff;border-color:var(--inverse-outline-variant);backdrop-filter:blur(8px)}
+.button-compact{font-size:var(--cta-sm-size);line-height:var(--cta-sm-line-height);letter-spacing:var(--cta-sm-letter-spacing);padding:6px 16px;height:36px}
+
+.arrow-link{display:inline-flex;align-items:center;font-weight:450;transition:.2s opacity}
+.arrow-link:after{content:"→";display:inline-flex;margin-left:var(--space-xs);transition:.3s transform}
+.arrow-link:hover:after{transform:translateX(50%)}
+
+.slider-btn{width:48px;height:48px;border-radius:var(--shape-corner-rounded);border:1px solid var(--outline);background:var(--surface-container);color:var(--on-surface-variant);cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-size:20px;transition:.15s ease-out}
+.slider-btn:hover{background:var(--surface-container-high)}
+
+/* ============ SECTIONS — one viewport per section ============ */
+section, header.hero, .dark-band{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding-top:var(--space-6xl);padding-bottom:var(--space-6xl)}
+@media (max-width:767px){section, header.hero, .dark-band{min-height:auto}}
+
+/* 01 · NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;height:var(--nav-height);
+  background:var(--nav-surface);backdrop-filter:blur(5px);border-bottom:1px solid var(--outline-variant);
+  display:flex;align-items:center}
+.nav .container{display:flex;align-items:center;justify-content:space-between;width:100%}
+.nav-mark{width:22px;height:22px;border-radius:50%;background:radial-gradient(circle at 30% 30%, var(--accent-light), var(--accent) 55%, var(--accent-deep) 85%)}
+.nav-brand{display:flex;align-items:center;gap:var(--space-sm);font-weight:450;font-size:var(--sm-size)}
+.nav-links{display:flex;gap:var(--space-xs)}
+.nav-links a{font-size:var(--cta-sm-size);line-height:var(--cta-sm-line-height);font-weight:450;color:var(--on-surface-variant);padding:6px 16px;border-radius:var(--shape-corner-rounded);transition:.15s ease-out}
+.nav-links a:hover{background:rgba(var(--palette-grey-400-rgb),.2);color:var(--on-surface)}
+@media (max-width:1023px){.nav-links{display:none}}
+
+/* 02 · HERO */
+.hero{position:relative;text-align:center;align-items:center;overflow:hidden}
+.hero h1{max-width:16ch;margin:0 auto var(--space-lg)}
+.hero .cursor{display:inline-block;width:.08em;height:.9em;vertical-align:-.08em;background:var(--accent);animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.hero-ctas{display:flex;gap:var(--space-md);justify-content:center;margin-top:var(--space-xl)}
+.hero-play{margin-top:var(--space-2xl);display:inline-flex;align-items:center;gap:var(--space-sm);font-size:var(--sm-size);color:var(--on-surface-variant)}
+.hero-play .glyph{width:36px;height:36px;border-radius:50%;border:1px solid var(--outline);display:inline-flex;align-items:center;justify-content:center;font-size:12px}
+.confetti{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:-1}
+
+/* The phone — CSS product render, no photography */
+.phone-stage{position:relative;margin-bottom:var(--space-xl);display:flex;align-items:center;justify-content:center}
+.phone-halo{position:absolute;width:340px;height:340px;border-radius:50%;
+  background:radial-gradient(circle, rgba(245,184,0,.25), rgba(245,184,0,.07) 55%, transparent 72%);
+  animation:halo 6s var(--ease-in-out-quart) infinite alternate}
+@keyframes halo{from{transform:scale(1)}to{transform:scale(1.18)}}
+.phone{position:relative;width:118px;height:236px;border-radius:26px;
+  background:linear-gradient(155deg, var(--accent-light) 0%, var(--accent) 48%, var(--accent-deep) 100%);
+  border:1px solid rgba(33,34,38,.1);
+  animation:float 7s var(--ease-in-out-quart) infinite alternate}
+@keyframes float{from{transform:translateY(-6px) rotate(-2deg)}to{transform:translateY(8px) rotate(2deg)}}
+.phone:before{content:"";position:absolute;inset:7px;border-radius:20px;
+  background:linear-gradient(155deg, #1A1B20 0%, #121317 60%, #26272C 100%)}
+.phone:after{content:"";position:absolute;top:16px;left:16px;width:26px;height:26px;border-radius:13px;
+  background:linear-gradient(155deg,#2F3034,#121317);border:1px solid rgba(230,234,240,.14)}
+.phone .glint{position:absolute;top:36%;left:18%;width:30%;height:36%;border-radius:50%;
+  background:radial-gradient(ellipse, rgba(255,255,255,.14), transparent 70%);pointer-events:none}
+.phone-sm{width:72px;height:144px;border-radius:16px;animation:none}
+.phone-sm:before{inset:5px;border-radius:12px}
+.phone-sm:after{top:10px;left:10px;width:16px;height:16px;border-radius:8px}
+
+/* 03 · COLORS carousel */
+.carousel-head{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:var(--space-xl);gap:var(--space-lg)}
+.carousel{display:flex;gap:var(--space-md);overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:var(--space-md);scrollbar-width:none}
+.carousel::-webkit-scrollbar{display:none}
+.case-card{flex:0 0 380px;scroll-snap-align:start;border:1px solid var(--outline-variant);border-radius:var(--shape-corner-lg);background:var(--surface-container);overflow:hidden}
+.case-card .cover{aspect-ratio:16/10;display:flex;align-items:center;justify-content:center}
+.case-card .pad{padding:var(--space-lg)}
+.badge{display:inline-block;font-family:var(--font-mono);font-size:var(--xs-size);letter-spacing:.08em;text-transform:uppercase;padding:4px 12px;border-radius:var(--shape-corner-rounded);border:1px solid var(--outline);color:var(--on-surface-variant);margin-bottom:var(--space-md)}
+
+/* 04 · TWO-COLUMN showpiece */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media (max-width:1023px){.two-col{grid-template-columns:1fr}}
+.showpiece{position:relative;overflow:hidden;border-radius:var(--shape-corner-xl);border:1px solid var(--outline-variant);background:var(--surface-container);padding:var(--space-4xl) var(--space-2xl);min-height:560px;display:flex;flex-direction:column;justify-content:flex-end}
+.showpiece .orb{position:absolute;top:-20%;right:-10%;width:70%;aspect-ratio:1;border-radius:50%;opacity:.5;z-index:0;
+  background:radial-gradient(circle at 40% 40%, var(--accent), transparent 70%);
+  animation:morph 12s var(--ease-in-out-quart) infinite alternate}
+@keyframes morph{from{transform:scale(1) translate(0,0)}to{transform:scale(1.25) translate(-8%,6%)}}
+.showpiece > *{position:relative;z-index:1}
+.showpiece h3{max-width:26ch}
+
+/* 05 · JOURNAL slider */
+.blog-card{flex:0 0 320px;scroll-snap-align:start;border:1px solid var(--outline-variant);border-radius:var(--shape-corner-lg);overflow:hidden;background:var(--surface)}
+.blog-card .cover{aspect-ratio:16/10}
+
+/* 06 · DARK CTA band */
+.dark-band{background:var(--inverse-surface);color:var(--inverse-on-surface);text-align:center;align-items:center;position:relative;overflow:hidden}
+.dark-band .lede{color:var(--inverse-on-surface-variant)}
+.dark-band .confetti{opacity:.4;z-index:0}
+.dark-band .container{position:relative;z-index:1}
+.dark-band .cursor{display:inline-block;width:.08em;height:.9em;vertical-align:-.08em;background:var(--accent);animation:blink 1s steps(1) infinite}
+
+/* 07 · FOOTER */
+footer{border-top:1px solid var(--outline-variant);padding:var(--space-4xl) 0 var(--space-lg)}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:var(--grid-gutter);margin-bottom:var(--space-4xl)}
+@media (max-width:767px){.footer-grid{grid-template-columns:1fr 1fr;gap:var(--space-xl)}}
+.footer-grid h6{font-size:var(--sm-size);font-weight:450;margin-bottom:var(--space-md)}
+.footer-grid a{display:block;font-size:var(--sm-size);color:var(--on-surface-variant);line-height:2}
+.footer-wordmark{font-size:clamp(72px,16vw,var(--9xl-size));line-height:.85;letter-spacing:var(--9xl-letter-spacing);font-weight:450;font-variation-settings:"wdth" 100,"opsz" 144;color:var(--on-surface);user-select:none}
+.footer-legal{display:flex;justify-content:space-between;align-items:center;padding-top:var(--space-lg);border-top:1px solid var(--outline-variant);margin-top:var(--space-2xl)}
+.footer-legal .links{display:flex;gap:var(--space-lg)}
+.footer-legal a{font-size:var(--xs-size);color:var(--on-surface-variant)}
+
+/* responsive hero type */
+@media (max-width:1439px){.landing-main{font-size:84px;line-height:84px;letter-spacing:-1.7px;font-variation-settings:"wdth" 100,"opsz" 84}}
+@media (max-width:1023px){.landing-main{font-size:64px;line-height:64px;letter-spacing:-1.3px;font-variation-settings:"wdth" 100,"opsz" 64}.heading-2{font-size:54px;line-height:56.16px}}
+@media (max-width:767px){
+  :root{--page-margin:24px}
+  .landing-main{font-size:56px;line-height:56px;letter-spacing:-1.1px;font-variation-settings:"wdth" 100,"opsz" 56}
+  .heading-2{font-size:42px;line-height:43.68px}
+  .case-card{flex-basis:300px}
+}
+</style>
+</head>
+<body>
+
+<!-- 01 · NAV -->
+<nav class="nav">
+  <div class="container">
+    <a class="nav-brand" href="#"><span class="nav-mark"></span>Lume</a>
+    <div class="nav-links">
+      <a href="#colors">Colors</a>
+      <a href="#one">Lume One</a>
+      <a href="#one">Trade-in</a>
+      <a href="#journal">Journal</a>
+      <a href="#">Support</a>
+    </div>
+    <a class="button button-primary button-compact" href="#buy">Buy now</a>
+  </div>
+</nav>
+
+<!-- 02 · HERO -->
+<header class="hero">
+  <canvas class="confetti" id="confetti"></canvas>
+  <div class="container" style="display:flex;flex-direction:column;align-items:center">
+    <div class="phone-stage">
+      <div class="phone-halo"></div>
+      <div class="phone"><span class="glint"></span></div>
+    </div>
+    <h1 class="landing-main"><span id="typed"></span><span class="cursor"></span></h1>
+    <p class="lede body-lg">Lume One is milled from one block of aluminum and anodized in seven luminous shades.</p>
+    <div class="hero-ctas">
+      <a class="button button-primary" href="#buy">Buy Lume One</a>
+      <a class="button button-secondary" href="#colors">See the colors</a>
+    </div>
+    <a class="hero-play" href="#"><span class="glyph">▶</span>Play intro</a>
+  </div>
+</header>
+
+<!-- 03 · COLORS -->
+<section id="colors">
+  <div class="container">
+    <div class="carousel-head">
+      <div>
+        <div class="eyebrow">The finish lab</div>
+        <h2 class="heading-2">Seven shades, one obsession</h2>
+      </div>
+      <div style="display:flex;gap:8px">
+        <button class="slider-btn" data-scroll="-1" data-target="cases" aria-label="Previous">←</button>
+        <button class="slider-btn" data-scroll="1" data-target="cases" aria-label="Next">→</button>
+      </div>
+    </div>
+    <div class="carousel" id="cases">
+      <article class="case-card">
+        <div class="cover" style="background:linear-gradient(135deg,#FFF3CC,#FFD34D)">
+          <div class="phone phone-sm" style="background:linear-gradient(155deg,#FFD34D,#F5B800 48%,#D99E00)"></div>
+        </div>
+        <div class="pad">
+          <span class="badge">Solar</span>
+          <h3 class="heading-6">The yellow that started it all</h3>
+          <p class="body" style="color:var(--on-surface-variant);margin:12px 0 16px">Anodized in three passes until it glows like late-afternoon light. Our signature shade.</p>
+          <a class="arrow-link caption" href="#">View Solar</a>
+        </div>
+      </article>
+      <article class="case-card">
+        <div class="cover" style="background:linear-gradient(135deg,#FFE0DB,#FF8A7A)">
+          <div class="phone phone-sm" style="background:linear-gradient(155deg,#FF8A7A,#E8453C 48%,#B93227)"></div>
+        </div>
+        <div class="pad">
+          <span class="badge">Coral</span>
+          <h3 class="heading-6">Warmth you can carry</h3>
+          <p class="body" style="color:var(--on-surface-variant);margin:12px 0 16px">A red that leans friendly, not loud. Matched titanium buttons, color-through frame.</p>
+          <a class="arrow-link caption" href="#">View Coral</a>
+        </div>
+      </article>
+      <article class="case-card">
+        <div class="cover" style="background:linear-gradient(135deg,#DBEAFF,#7AAFFF)">
+          <div class="phone phone-sm" style="background:linear-gradient(155deg,#7AAFFF,#3279F9 48%,#2258BC)"></div>
+        </div>
+        <div class="pad">
+          <span class="badge">Sky</span>
+          <h3 class="heading-6">Clear-day blue, all day</h3>
+          <p class="body" style="color:var(--on-surface-variant);margin:12px 0 16px">Cool to the eye and to the touch. The finish deepens as the light falls.</p>
+          <a class="arrow-link caption" href="#">View Sky</a>
+        </div>
+      </article>
+      <article class="case-card">
+        <div class="cover" style="background:linear-gradient(135deg,#E2F2E2,#7CC583)">
+          <div class="phone phone-sm" style="background:linear-gradient(155deg,#7CC583,#34A853 48%,#237038)"></div>
+        </div>
+        <div class="pad">
+          <span class="badge">Moss</span>
+          <h3 class="heading-6">Green with quiet manners</h3>
+          <p class="body" style="color:var(--on-surface-variant);margin:12px 0 16px">A soft botanical green that reads neutral in a meeting and alive outdoors.</p>
+          <a class="arrow-link caption" href="#">View Moss</a>
+        </div>
+      </article>
+      <article class="case-card">
+        <div class="cover" style="background:linear-gradient(135deg,#E6EAF0,#8F959E)">
+          <div class="phone phone-sm" style="background:linear-gradient(155deg,#8F959E,#45474D 48%,#212226)"></div>
+        </div>
+        <div class="pad">
+          <span class="badge">Graphite</span>
+          <h3 class="heading-6">For the monochrome loyalists</h3>
+          <p class="body" style="color:var(--on-surface-variant);margin:12px 0 16px">Deep grey with a satin sheen. The one that disappears into your hand.</p>
+          <a class="arrow-link caption" href="#">View Graphite</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- 04 · TWO-COLUMN SHOWPIECE -->
+<section id="one">
+  <div class="container two-col">
+    <div class="showpiece">
+      <div class="orb"></div>
+      <span class="badge">Flagship</span>
+      <h3 class="heading-3">One block. No seams.</h3>
+      <p class="lede" style="margin:16px 0 24px">Machined from a single billet, so the color runs all the way through.</p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap">
+        <a class="button button-primary" href="#buy">Buy Lume One</a>
+        <a class="button button-secondary" href="#">Read the specs</a>
+      </div>
+    </div>
+    <div class="showpiece">
+      <div class="orb" style="background:radial-gradient(circle at 40% 40%, #B7BFD9, transparent 70%)"></div>
+      <span class="badge">Trade-in</span>
+      <h3 class="heading-3">Your old phone pays forward</h3>
+      <p class="lede" style="margin:16px 0 24px">Send us any phone; we credit you and refurbish it for a second life.</p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap">
+        <a class="button button-primary" href="#">Get an estimate</a>
+        <a class="button button-secondary" href="#">How it works</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 · JOURNAL -->
+<section id="journal">
+  <div class="container">
+    <div class="carousel-head">
+      <h2 class="heading-3">From the Lume journal</h2>
+      <div style="display:flex;gap:8px">
+        <button class="slider-btn" data-scroll="-1" data-target="blogs" aria-label="Previous">←</button>
+        <button class="slider-btn" data-scroll="1" data-target="blogs" aria-label="Next">→</button>
+      </div>
+    </div>
+    <div class="carousel" id="blogs">
+      <article class="blog-card">
+        <div class="cover" style="background:linear-gradient(120deg,#FFF3CC,#F5B800)"></div>
+        <div style="padding:24px">
+          <div class="caption">Jul 2026 · Color Lab</div>
+          <h4 class="heading-7" style="margin:8px 0 16px">How Solar Yellow survives sunlight</h4>
+          <a class="arrow-link caption" href="#">Read</a>
+        </div>
+      </article>
+      <article class="blog-card">
+        <div class="cover" style="background:linear-gradient(120deg,#E6EAF0,#B2BBC5)"></div>
+        <div style="padding:24px">
+          <div class="caption">Jun 2026 · Engineering</div>
+          <h4 class="heading-7" style="margin:8px 0 16px">Milling a phone from one billet</h4>
+          <a class="arrow-link caption" href="#">Read</a>
+        </div>
+      </article>
+      <article class="blog-card">
+        <div class="cover" style="background:linear-gradient(120deg,#FFE0DB,#FF8A7A)"></div>
+        <div style="padding:24px">
+          <div class="caption">Jun 2026 · Design</div>
+          <h4 class="heading-7" style="margin:8px 0 16px">Why our buttons click the way they do</h4>
+          <a class="arrow-link caption" href="#">Read</a>
+        </div>
+      </article>
+      <article class="blog-card">
+        <div class="cover" style="background:linear-gradient(120deg,#DBEAFF,#7AAFFF)"></div>
+        <div style="padding:24px">
+          <div class="caption">May 2026 · Color Lab</div>
+          <h4 class="heading-7" style="margin:8px 0 16px">Anodizing, explained in three passes</h4>
+          <a class="arrow-link caption" href="#">Read</a>
+        </div>
+      </article>
+      <article class="blog-card">
+        <div class="cover" style="background:linear-gradient(120deg,#E2F2E2,#7CC583)"></div>
+        <div style="padding:24px">
+          <div class="caption">May 2026 · Sustainability</div>
+          <h4 class="heading-7" style="margin:8px 0 16px">Every trade-in becomes a second phone</h4>
+          <a class="arrow-link caption" href="#">Read</a>
+        </div>
+      </article>
+      <article class="blog-card">
+        <div class="cover" style="background:linear-gradient(120deg,#EFF2F7,#CDD4DC)"></div>
+        <div style="padding:24px">
+          <div class="caption">Apr 2026 · Company</div>
+          <h4 class="heading-7" style="margin:8px 0 16px">The studio where Lume gets its glow</h4>
+          <a class="arrow-link caption" href="#">Read</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- 06 · DARK CTA -->
+<section class="dark-band" id="buy">
+  <canvas class="confetti" id="confetti2"></canvas>
+  <div class="container" style="display:flex;flex-direction:column;align-items:center">
+    <h2 class="heading-1"><span id="typed2"></span><span class="cursor"></span></h2>
+    <p class="lede body-lg" style="margin-top:16px">Free engraving, free shipping, thirty days to fall in love.</p>
+    <div style="margin-top:36px">
+      <a class="button button-primary-inverse" href="#">Buy Lume One</a>
+    </div>
+  </div>
+</section>
+
+<!-- 07 · FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="nav-brand"><span class="nav-mark"></span>Lume</div>
+        <p class="caption" style="margin-top:16px">Beautiful phones, period.</p>
+      </div>
+      <div><h6>Shop</h6><a href="#one">Lume One</a><a href="#colors">Colors</a><a href="#one">Trade-in</a></div>
+      <div><h6>Company</h6><a href="#journal">Journal</a><a href="#">Studio</a><a href="#">Careers</a></div>
+      <div><h6>Support</h6><a href="#">Contact</a><a href="#">Repairs</a><a href="#">Warranty</a></div>
+    </div>
+    <div class="footer-wordmark">LUME</div>
+    <div class="footer-legal">
+      <span class="caption">© 2026 Lume</span>
+      <div class="links"><a href="#">Privacy</a><a href="#">Terms</a></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* Typed headline — word-wrapping variant (words never break mid-character) */
+function typeInto(el, text, speed = 34) {
+  const words = text.split(' ');
+  el.innerHTML = words.map(() => `<span style="white-space:nowrap"><span class="w"></span></span>`).join(' ');
+  const spans = el.querySelectorAll('.w');
+  let wi = 0, ci = 0;
+  (function tick() {
+    if (wi >= words.length) return;
+    spans[wi].textContent = words[wi].slice(0, ++ci);
+    if (ci >= words[wi].length) { wi++; ci = 0; }
+    setTimeout(tick, speed);
+  })();
+}
+const io = new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting) { typeInto(e.target, e.target.dataset.text); io.unobserve(e.target); }
+}), { threshold: .6 });
+const t1 = document.getElementById('typed');  t1.dataset.text = 'A phone worth staring at';
+const t2 = document.getElementById('typed2'); t2.dataset.text = 'Say hello to Solar Yellow';
+io.observe(t1); io.observe(t2);
+
+/* Confetti particle field — yellow-biased */
+function confetti(canvas, count = 140) {
+  const ctx = canvas.getContext('2d'), colors = ['#F5B800','#FFD34D','#E8453C','#3279F9','#CDD4DC'];
+  function size(){ const r = canvas.getBoundingClientRect(); canvas.width = r.width; canvas.height = r.height; }
+  size(); addEventListener('resize', size); addEventListener('load', size);
+  const dots = Array.from({length: count}, () => ({
+    x: Math.random(), y: Math.random(), r: 1 + Math.random() * 2,
+    c: colors[Math.random() * colors.length | 0], v: .00004 + Math.random() * .0001
+  }));
+  (function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    for (const d of dots) {
+      d.y -= d.v; if (d.y < 0) d.y = 1;
+      ctx.fillStyle = d.c; ctx.globalAlpha = .8;
+      ctx.fillRect(d.x * canvas.width, d.y * canvas.height, d.r, d.r * 2.2);
+    }
+    requestAnimationFrame(draw);
+  })();
+}
+document.querySelectorAll('.confetti').forEach(c => confetti(c));
+
+/* Carousel arrows */
+document.querySelectorAll('.slider-btn').forEach(b => b.addEventListener('click', () => {
+  const track = document.getElementById(b.dataset.target || 'cases');
+  track.scrollBy({ left: 396 * +b.dataset.scroll, behavior: 'smooth' });
+}));
+</script>
+</body>
+</html>

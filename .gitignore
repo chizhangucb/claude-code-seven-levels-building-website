@@ -1,0 +1,6 @@
+.DS_Store
+# original trial folders kept locally for reference; canonical copies live in demos/
+fable-trials/
+opus-trials/
+node_modules/
+.vercel

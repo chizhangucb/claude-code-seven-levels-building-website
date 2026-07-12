@@ -1,0 +1,176 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - link "LUMA" [ref=e4] [cursor=pointer]:
+        - /url: "#"
+      - navigation [ref=e6]:
+        - link "The Phone" [ref=e7] [cursor=pointer]:
+          - /url: "#phone"
+        - link "Design" [ref=e8] [cursor=pointer]:
+          - /url: "#design"
+        - link "Colors" [ref=e9] [cursor=pointer]:
+          - /url: "#color"
+        - link "Journal" [ref=e10] [cursor=pointer]:
+          - /url: "#journal"
+      - link "Reserve" [ref=e11] [cursor=pointer]:
+        - /url: "#reserve"
+  - banner [ref=e12]:
+    - generic [ref=e14]:
+      - heading "A phone worth looking at." [level=1] [ref=e15]:
+        - generic [ref=e16]: A
+        - generic [ref=e17]: phone
+        - generic [ref=e18]: worth
+        - generic [ref=e19]: looking
+        - generic [ref=e20]: at.
+      - paragraph [ref=e22]: One flagship. Machined in a single block, finished in a yellow you will not find anywhere else.
+      - generic [ref=e23]:
+        - link "Reserve yours" [ref=e24] [cursor=pointer]:
+          - /url: "#reserve"
+        - link "See the design" [ref=e25] [cursor=pointer]:
+          - /url: "#design"
+      - link "play_arrow Watch the film" [ref=e26] [cursor=pointer]:
+        - /url: "#"
+        - generic [ref=e27]: play_arrow
+        - text: Watch the film
+  - generic [ref=e30]:
+    - generic [ref=e31]:
+      - generic [ref=e32]:
+        - generic [ref=e33]: Why it feels different
+        - heading "Designed as an object, not a spec sheet." [level=2] [ref=e34]
+      - generic [ref=e35]:
+        - button "Previous" [ref=e36] [cursor=pointer]:
+          - generic [ref=e37]: arrow_back
+        - button "Next" [ref=e38] [cursor=pointer]:
+          - generic [ref=e39]: arrow_forward
+    - generic [ref=e40]:
+      - article [ref=e41]:
+        - generic [ref=e43]:
+          - generic [ref=e44]: Body
+          - heading "A single billet of aluminium, anodised gold." [level=3] [ref=e45]
+          - paragraph [ref=e46]: No seams you can feel. The color is the metal, not a coat on top of it.
+          - link "How it's made arrow_forward" [ref=e47] [cursor=pointer]:
+            - /url: "#"
+      - article [ref=e48]:
+        - generic [ref=e50]:
+          - generic [ref=e51]: Screen
+          - heading "Edge-to-edge, tuned to warm light." [level=3] [ref=e52]
+          - paragraph [ref=e53]: A display calibrated to flatter skin and sunlight, not just hit a nits number.
+          - link "The display arrow_forward" [ref=e54] [cursor=pointer]:
+            - /url: "#"
+      - article [ref=e55]:
+        - generic [ref=e57]:
+          - generic [ref=e58]: Weight
+          - heading "Heavy enough to feel real." [level=3] [ref=e59]
+          - paragraph [ref=e60]: Balanced so it sits in the hand like a good watch sits on the wrist.
+          - link "In the hand arrow_forward" [ref=e61] [cursor=pointer]:
+            - /url: "#"
+      - article [ref=e62]:
+        - generic [ref=e64]:
+          - generic [ref=e65]: Sound
+          - heading "Speakers you can feel in the frame." [level=3] [ref=e66]
+          - paragraph [ref=e67]: Tuned by ear, not by graph. Full at low volume, clean at high.
+          - link "Listen arrow_forward" [ref=e68] [cursor=pointer]:
+            - /url: "#"
+      - article [ref=e69]:
+        - generic [ref=e71]:
+          - generic [ref=e72]: Camera
+          - heading "One lens, done properly." [level=3] [ref=e73]
+          - paragraph [ref=e74]: We chose depth over a spec race. Every shot looks like you meant it.
+          - link "Sample gallery arrow_forward" [ref=e75] [cursor=pointer]:
+            - /url: "#"
+  - generic [ref=e78]:
+    - generic [ref=e79]:
+      - generic [ref=e81]: The signature
+      - heading "Yellow, the way we mean it." [level=3] [ref=e82]
+      - paragraph [ref=e83]: A warm, dense gold-yellow developed over eleven anodising passes. It shifts, quietly, in the light.
+      - generic [ref=e84]:
+        - link "Reserve in yellow" [ref=e85] [cursor=pointer]:
+          - /url: "#reserve"
+        - link "Other finishes" [ref=e86] [cursor=pointer]:
+          - /url: "#"
+    - generic [ref=e87]:
+      - generic [ref=e89]: The making
+      - heading "Six weeks per hundred phones." [level=3] [ref=e90]
+      - paragraph [ref=e91]: Assembled in small runs by people whose names are on the box. Slow on purpose.
+      - generic [ref=e92]:
+        - link "The workshop" [ref=e93] [cursor=pointer]:
+          - /url: "#"
+        - link "Our story" [ref=e94] [cursor=pointer]:
+          - /url: "#"
+  - generic [ref=e96]:
+    - generic [ref=e97]:
+      - generic [ref=e98]:
+        - generic [ref=e99]: Journal
+        - heading "Notes from the workshop." [level=2] [ref=e100]
+      - generic [ref=e101]:
+        - button "Previous" [ref=e102] [cursor=pointer]:
+          - generic [ref=e103]: arrow_back
+        - button "Next" [ref=e104] [cursor=pointer]:
+          - generic [ref=e105]: arrow_forward
+    - generic [ref=e106]:
+      - article [ref=e107]:
+        - generic [ref=e109]:
+          - paragraph [ref=e110]: Jul 2026 · Craft
+          - heading "Why we anodise eleven times." [level=3] [ref=e111]
+          - link "Read arrow_forward" [ref=e112] [cursor=pointer]:
+            - /url: "#"
+      - article [ref=e113]:
+        - generic [ref=e115]:
+          - paragraph [ref=e116]: Jun 2026 · Design
+          - heading "Choosing one camera on purpose." [level=3] [ref=e117]
+          - link "Read arrow_forward" [ref=e118] [cursor=pointer]:
+            - /url: "#"
+      - article [ref=e119]:
+        - generic [ref=e121]:
+          - paragraph [ref=e122]: Jun 2026 · Studio
+          - heading "The weight of a good phone." [level=3] [ref=e123]
+          - link "Read arrow_forward" [ref=e124] [cursor=pointer]:
+            - /url: "#"
+      - article [ref=e125]:
+        - generic [ref=e127]:
+          - paragraph [ref=e128]: May 2026 · Sound
+          - heading "Tuning speakers by ear." [level=3] [ref=e129]
+          - link "Read arrow_forward" [ref=e130] [cursor=pointer]:
+            - /url: "#"
+  - generic [ref=e133]:
+    - heading [level=2]
+    - link "Reserve for $99" [ref=e134] [cursor=pointer]:
+      - /url: "#"
+  - contentinfo [ref=e135]:
+    - generic [ref=e136]:
+      - generic [ref=e137]:
+        - paragraph [ref=e139]: One phone. Made beautifully.
+        - generic [ref=e140]:
+          - heading "Phone" [level=4] [ref=e141]
+          - link "Design" [ref=e142] [cursor=pointer]:
+            - /url: "#"
+          - link "Colors" [ref=e143] [cursor=pointer]:
+            - /url: "#"
+          - link "Specs" [ref=e144] [cursor=pointer]:
+            - /url: "#"
+          - link "Compare" [ref=e145] [cursor=pointer]:
+            - /url: "#"
+        - generic [ref=e146]:
+          - heading "Studio" [level=4] [ref=e147]
+          - link "Our story" [ref=e148] [cursor=pointer]:
+            - /url: "#"
+          - link "Workshop" [ref=e149] [cursor=pointer]:
+            - /url: "#"
+          - link "Journal" [ref=e150] [cursor=pointer]:
+            - /url: "#"
+          - link "Careers" [ref=e151] [cursor=pointer]:
+            - /url: "#"
+        - generic [ref=e152]:
+          - heading "Support" [level=4] [ref=e153]
+          - link "Contact" [ref=e154] [cursor=pointer]:
+            - /url: "#"
+          - link "Warranty" [ref=e155] [cursor=pointer]:
+            - /url: "#"
+          - link "Shipping" [ref=e156] [cursor=pointer]:
+            - /url: "#"
+          - link "Returns" [ref=e157] [cursor=pointer]:
+            - /url: "#"
+      - generic [ref=e158]: LUMA
+      - generic [ref=e159]:
+        - generic [ref=e160]: © 2026 LUMA
+        - generic [ref=e162]: Privacy · Terms · Cookies

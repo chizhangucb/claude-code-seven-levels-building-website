@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>LUMA — the yellow flagship</title>
+
+<!-- Roboto Flex = public sibling of Google Sans Flex. SAME axes: opsz, wght, wdth.
+     This is what preserves the three artistic decisions in a font you can actually use. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght,wdth@8..144,100..1000,25..151&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..0&display=block" rel="stylesheet">
+
+<style>
+/* ============================================================
+   :root — tokens extracted verbatim from antigravity.google
+   The ONE deliberate change vs source: --accent is LUMA yellow,
+   not Google blue. Everything else is the source system.
+   ============================================================ */
+:root{
+  /* type scale — size / line-height (px!) / letter-spacing / opsz */
+  --landing-main-size:107px; --landing-main-line:107px; --landing-main-track:-2.14px;
+  --9xl-size:148px; --9xl-line:145.04px; --9xl-track:-2.96px;
+  --7xl-size:98px;  --7xl-line:82.04px;  --7xl-track:-1.8px;
+  --6xl-size:72px;  --6xl-line:72px;     --6xl-track:-1.44px;
+  --5xl-size:54px;  --5xl-line:56.16px;  --5xl-track:-.95px;
+  --4xl-size:42px;  --4xl-line:43.68px;  --4xl-track:-.73px;
+  --3xl-size:32px;  --3xl-line:33.92px;  --3xl-track:-.15px;
+  --2xl-size:28px;  --2xl-line:30.24px;  --2xl-track:-.1px;
+  --xl-size:24px;   --xl-line:25.92px;   --xl-track:-.07px;
+  --lg-size:22px;   --lg-line:24.64px;   --lg-track:-.08px;
+  --base-size:17.5px; --base-line:25.38px; --base-track:.18px;
+  --sm-size:14.5px; --sm-line:21.02px;   --sm-track:.16px;
+  --xs-size:12.5px; --xs-line:15.5px;    --xs-track:.11px;
+
+  /* palette */
+  --grey-0:#FFFFFF; --grey-10:#F8F9FC; --grey-15:#F0F1F5; --grey-20:#EFF2F7;
+  --grey-50:#E6EAF0; --grey-100:#E1E6EC; --grey-800:#45474D; --grey-900:#2F3034;
+  --grey-1000:#212226; --grey-1100:#18191D; --grey-1200:#121317;
+  --surface:var(--grey-0); --surface-container:var(--grey-10); --surface-high:var(--grey-20);
+  --on-surface:var(--grey-1200); --on-surface-variant:var(--grey-800);
+  --dark-surface:var(--grey-1200); --on-dark:var(--grey-10);
+  --outline:rgba(33,34,38,.12); --outline-variant:rgba(33,34,38,.06);
+  --outline-on-dark:rgba(230,234,240,.12);
+
+  /* LUMA accent — the one ink color per screen (source used #3279F9) */
+  --accent:#FFC400; --accent-strong:#F0A800; --accent-soft:#FFF3C9; --accent-ink-on:#121317;
+
+  /* spacing */
+  --space-xs:4px; --space-sm:8px; --space-md:16px; --space-lg:24px; --space-xl:36px;
+  --space-2xl:48px; --space-3xl:60px; --space-4xl:80px; --space-6xl:120px; --space-7xl:180px;
+
+  /* radius */
+  --r-sm:8px; --r-md:16px; --r-lg:24px; --r-xl:36px; --r-2xl:48px; --r-pill:9999px;
+
+  /* easing */
+  --ease-out-expo:cubic-bezier(.19,1,.22,1);
+  --ease-out-quint:cubic-bezier(.23,1,.32,1);
+  --ease-out-back:cubic-bezier(.34,1.85,.64,1);
+  --ease-in-out-quart:cubic-bezier(.77,0,.175,1);
+
+  /* layout */
+  --nav-height:52px; --page-margin:72px; --container-max:calc(1728px + var(--page-margin)*2);
+
+  --font:"Roboto Flex","Google Sans Flex",sans-serif;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--font); background:var(--surface); color:var(--on-surface);
+  font-size:var(--base-size); line-height:var(--base-line); letter-spacing:var(--base-track);
+  font-weight:400; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+  font-variation-settings:"wdth" 100,"opsz" 17.5;
+}
+.container{max-width:var(--container-max);margin:0 auto;padding:0 var(--page-margin)}
+section{min-height:100vh;display:flex;flex-direction:column;justify-content:center}
+
+/* --- type utilities: weight 450 + opsz matched to size + px line-heights --- */
+.h-hero{font-size:var(--landing-main-size);line-height:var(--landing-main-line);letter-spacing:var(--landing-main-track);font-weight:450;font-variation-settings:"wdth" 100,"opsz" 144}
+.h1{font-size:var(--7xl-size);line-height:var(--7xl-line);letter-spacing:var(--7xl-track);font-weight:450;font-variation-settings:"wdth" 100,"opsz" 98}
+.h2{font-size:var(--6xl-size);line-height:var(--6xl-line);letter-spacing:var(--6xl-track);font-weight:450;font-variation-settings:"wdth" 100,"opsz" 72}
+.h3{font-size:var(--5xl-size);line-height:var(--5xl-line);letter-spacing:var(--5xl-track);font-weight:450;font-variation-settings:"wdth" 100,"opsz" 54}
+.h4{font-size:var(--4xl-size);line-height:var(--4xl-line);letter-spacing:var(--4xl-track);font-weight:450;font-variation-settings:"wdth" 100,"opsz" 42}
+.h5{font-size:var(--3xl-size);line-height:var(--3xl-line);letter-spacing:var(--3xl-track);font-weight:450;font-variation-settings:"wdth" 100,"opsz" 32}
+.h6{font-size:var(--xl-size);line-height:var(--xl-line);letter-spacing:var(--xl-track);font-weight:450;font-variation-settings:"wdth" 100,"opsz" 24}
+.eyebrow{font-size:var(--sm-size);line-height:var(--sm-line);letter-spacing:.08em;text-transform:uppercase;color:var(--on-surface-variant);font-weight:450}
+.lede{font-size:var(--xl-size);line-height:var(--xl-line);letter-spacing:var(--xl-track);color:var(--on-surface-variant);max-width:38ch;font-variation-settings:"wdth" 100,"opsz" 24}
+.body{max-width:60ch;color:var(--on-surface-variant)}
+
+/* --- icons --- */
+.ico{font-family:"Material Symbols Rounded";font-variation-settings:"FILL" 0,"wght" 300,"GRAD" 0,"opsz" 24;line-height:1;vertical-align:middle}
+
+/* --- buttons: pill, inverse-primary, opsz-matched, no shadow --- */
+.btn{display:inline-flex;align-items:center;gap:var(--space-sm);height:44px;padding:0 22px;border-radius:var(--r-pill);
+  font-size:var(--sm-size);letter-spacing:var(--sm-track);font-weight:450;font-variation-settings:"wdth" 100,"opsz" 14.5;
+  border:1px solid transparent;cursor:pointer;text-decoration:none;transition:.25s background var(--ease-out-expo),.25s transform var(--ease-out-expo)}
+.btn:active{transform:scale(.97)}
+.btn-primary{background:var(--on-surface);color:#fff}
+.btn-primary:hover{background:var(--grey-900)}
+.btn-accent{background:var(--accent);color:var(--accent-ink-on)}
+.btn-accent:hover{background:var(--accent-strong)}
+.btn-ghost{background:transparent;color:var(--on-surface);border-color:var(--outline)}
+.btn-ghost:hover{background:var(--grey-15)}
+.btn-light{background:var(--grey-10);color:var(--on-surface)}
+
+/* --- arrow link: font-glyph that slides on hover --- */
+.arrow{display:inline-flex;align-items:center;gap:var(--space-xs);color:var(--on-surface);text-decoration:none;font-weight:450;font-size:var(--base-size)}
+.arrow::after{content:"arrow_forward";font-family:"Material Symbols Rounded";font-variation-settings:"opsz" 20,"wght" 300;font-size:1.2em;transition:.3s transform var(--ease-out-expo)}
+.arrow:hover::after{transform:translateX(6px)}
+
+/* --- nav --- */
+.nav{position:sticky;top:0;z-index:100;height:var(--nav-height);display:flex;align-items:center;
+  background:rgba(255,255,255,.82);backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--outline-variant)}
+.nav .container{display:flex;align-items:center;width:100%}
+.wordmark{display:flex;align-items:center;gap:10px;font-weight:450;font-size:var(--lg-size);letter-spacing:-.02em;text-decoration:none;color:var(--on-surface);font-variation-settings:"wdth" 100,"opsz" 22}
+.mark{width:22px;height:22px;border-radius:var(--r-pill);background:radial-gradient(circle at 30% 30%,var(--accent),var(--accent-strong) 70%)}
+.nav-links{display:flex;gap:var(--space-xs);margin-left:var(--space-2xl)}
+.nav-links a{padding:6px 12px;border-radius:var(--r-pill);color:var(--on-surface-variant);text-decoration:none;font-size:var(--sm-size);transition:.2s background,.2s color}
+.nav-links a:hover{background:var(--grey-15);color:var(--on-surface)}
+.nav-cta{margin-left:auto}
+
+/* --- hero --- */
+.hero{text-align:center;align-items:center;position:relative;overflow:hidden}
+.orb{position:absolute;width:520px;height:520px;border-radius:50%;filter:blur(60px);opacity:.5;z-index:0;
+  background:conic-gradient(from 0deg,var(--accent),#FFE680,var(--accent-strong),var(--accent));animation:spin 22s linear infinite}
+.hero .container{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:var(--space-xl)}
+.hero-headline{max-width:16ch}
+.caret{display:inline-block;width:.06em;height:.82em;margin-left:.04em;vertical-align:-.05em;border-radius:2px;
+  background:linear-gradient(180deg,var(--accent),var(--accent-strong));animation:blink 1s steps(1) infinite}
+.letter{opacity:0;animation:reveal .01s forwards}
+.cta-row{display:flex;gap:var(--space-md)}
+.play{display:inline-flex;align-items:center;gap:10px;color:var(--on-surface-variant);text-decoration:none;font-size:var(--sm-size)}
+.play .disc{width:34px;height:34px;border-radius:var(--r-pill);border:1px solid var(--outline);display:grid;place-items:center;transition:.2s background}
+.play:hover .disc{background:var(--grey-15)}
+
+/* --- generic section header --- */
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:var(--space-2xl);margin-bottom:var(--space-4xl)}
+.sec-head .txt{display:flex;flex-direction:column;gap:var(--space-md);max-width:60ch}
+.round-btns{display:flex;gap:var(--space-md)}
+.round-btn{width:48px;height:48px;border-radius:var(--r-pill);border:1px solid var(--outline);background:var(--surface);display:grid;place-items:center;cursor:pointer;transition:.2s background}
+.round-btn:hover{background:var(--grey-15)}
+
+/* --- carousel --- */
+.rail{display:flex;gap:var(--space-lg);overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:var(--space-md);scrollbar-width:none}
+.rail::-webkit-scrollbar{display:none}
+.card{flex:0 0 380px;scroll-snap-align:start;border:1px solid var(--outline);border-radius:var(--r-lg);overflow:hidden;background:var(--surface);transition:.3s transform var(--ease-out-expo)}
+.card:hover{transform:translateY(-4px)}
+.card .cover{aspect-ratio:16/10;background:linear-gradient(135deg,var(--accent-soft),var(--grey-20))}
+.card .cover.alt{background:linear-gradient(135deg,var(--grey-20),var(--accent-soft))}
+.card .body{padding:var(--space-lg);display:flex;flex-direction:column;gap:var(--space-md)}
+.badge{align-self:flex-start;padding:4px 12px;border-radius:var(--r-pill);background:var(--accent-soft);color:var(--accent-strong);font-size:var(--xs-size);letter-spacing:.06em;text-transform:uppercase;font-weight:450}
+
+/* --- two-column showpiece --- */
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-md)}
+.panel{position:relative;overflow:hidden;border-radius:var(--r-2xl);padding:var(--space-4xl);min-height:460px;display:flex;flex-direction:column;justify-content:flex-end;gap:var(--space-lg);border:1px solid var(--outline)}
+.panel .orb2{position:absolute;inset:auto -80px -80px auto;width:360px;height:360px;border-radius:50%;filter:blur(50px);opacity:.55;
+  background:radial-gradient(circle,var(--accent),transparent 70%);animation:float 9s var(--ease-in-out-quart) infinite alternate}
+.panel.dark{background:var(--dark-surface);color:var(--on-dark);border-color:var(--outline-on-dark)}
+.panel.dark .lede{color:var(--grey-100)}
+.panel *{position:relative;z-index:1}
+.pill-status{align-self:flex-start;padding:6px 14px;border-radius:var(--r-pill);border:1px solid var(--outline);font-size:var(--xs-size);letter-spacing:.06em;text-transform:uppercase}
+.panel.dark .pill-status{border-color:var(--outline-on-dark)}
+
+/* --- dark CTA band --- */
+.band{background:var(--dark-surface);color:var(--on-dark);text-align:center;align-items:center;position:relative;overflow:hidden}
+.band .orb{opacity:.35}
+.band .container{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:var(--space-xl)}
+
+/* --- footer --- */
+.footer{min-height:auto;display:block;border-top:1px solid var(--outline-variant);padding:var(--space-6xl) 0 var(--space-2xl)}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:var(--space-2xl);margin-bottom:var(--space-6xl)}
+.footer-grid h4{font-size:var(--sm-size);text-transform:uppercase;letter-spacing:.06em;color:var(--on-surface-variant);margin-bottom:var(--space-md);font-weight:450}
+.footer-grid a{display:block;color:var(--on-surface);text-decoration:none;padding:4px 0;font-size:var(--sm-size)}
+.footer-grid a:hover{color:var(--accent-strong)}
+.brand-huge{font-size:clamp(80px,18vw,240px);line-height:.85;font-weight:450;letter-spacing:-.03em;font-variation-settings:"wdth" 100,"opsz" 144;color:var(--on-surface)}
+.footer-legal{display:flex;justify-content:space-between;align-items:center;margin-top:var(--space-2xl);color:var(--on-surface-variant);font-size:var(--xs-size)}
+
+/* --- animations --- */
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes float{to{transform:translate(-30px,-20px) scale(1.1)}}
+@keyframes blink{0%,50%{opacity:1}51%,100%{opacity:0}}
+@keyframes reveal{to{opacity:1}}
+
+/* --- responsive --- */
+@media(max-width:1024px){
+  :root{--page-margin:24px}
+  .h-hero{font-size:56px;line-height:56px;font-variation-settings:"wdth" 100,"opsz" 72}
+  .h2{font-size:42px;line-height:43.68px;font-variation-settings:"wdth" 100,"opsz" 42}
+  section{min-height:auto;padding:var(--space-6xl) 0}
+  .duo{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr 1fr}
+  .sec-head{flex-direction:column;align-items:flex-start}
+}
+</style>
+</head>
+<body>
+
+<!-- 01 · NAV -->
+<header class="nav">
+  <div class="container">
+    <a class="wordmark" href="#"><span class="mark"></span>LUMA</a>
+    <nav class="nav-links">
+      <a href="#phone">The Phone</a>
+      <a href="#design">Design</a>
+      <a href="#color">Colors</a>
+      <a href="#journal">Journal</a>
+    </nav>
+    <a class="btn btn-primary nav-cta" href="#reserve">Reserve</a>
+  </div>
+</header>
+
+<!-- 02 · HERO -->
+<header class="hero" id="phone">
+  <div class="orb"></div>
+  <div class="container">
+    <h1 class="h-hero hero-headline" id="typed" data-text="A phone worth looking at."></h1>
+    <p class="lede">One flagship. Machined in a single block, finished in a yellow you will not find anywhere else.</p>
+    <div class="cta-row">
+      <a class="btn btn-accent" href="#reserve">Reserve yours</a>
+      <a class="btn btn-ghost" href="#design">See the design</a>
+    </div>
+    <a class="play" href="#"><span class="disc"><span class="ico" style="font-size:18px">play_arrow</span></span>Watch the film</a>
+  </div>
+</header>
+
+<!-- 03 · USE-CASES / FEATURE CARDS (horizontal scroll-snap) -->
+<section id="design">
+  <div class="container">
+    <div class="sec-head">
+      <div class="txt">
+        <span class="eyebrow">Why it feels different</span>
+        <h2 class="h2">Designed as an object, not a spec sheet.</h2>
+      </div>
+      <div class="round-btns">
+        <button class="round-btn" aria-label="Previous"><span class="ico">arrow_back</span></button>
+        <button class="round-btn" aria-label="Next"><span class="ico">arrow_forward</span></button>
+      </div>
+    </div>
+    <div class="rail">
+      <article class="card"><div class="cover"></div><div class="body"><span class="badge">Body</span><h3 class="h6">A single billet of aluminium, anodised gold.</h3><p class="body">No seams you can feel. The color is the metal, not a coat on top of it.</p><a class="arrow" href="#">How it's made</a></div></article>
+      <article class="card"><div class="cover alt"></div><div class="body"><span class="badge">Screen</span><h3 class="h6">Edge-to-edge, tuned to warm light.</h3><p class="body">A display calibrated to flatter skin and sunlight, not just hit a nits number.</p><a class="arrow" href="#">The display</a></div></article>
+      <article class="card"><div class="cover"></div><div class="body"><span class="badge">Weight</span><h3 class="h6">Heavy enough to feel real.</h3><p class="body">Balanced so it sits in the hand like a good watch sits on the wrist.</p><a class="arrow" href="#">In the hand</a></div></article>
+      <article class="card"><div class="cover alt"></div><div class="body"><span class="badge">Sound</span><h3 class="h6">Speakers you can feel in the frame.</h3><p class="body">Tuned by ear, not by graph. Full at low volume, clean at high.</p><a class="arrow" href="#">Listen</a></div></article>
+      <article class="card"><div class="cover"></div><div class="body"><span class="badge">Camera</span><h3 class="h6">One lens, done properly.</h3><p class="body">We chose depth over a spec race. Every shot looks like you meant it.</p><a class="arrow" href="#">Sample gallery</a></div></article>
+    </div>
+  </div>
+</section>
+
+<!-- 04 · TWO-COLUMN SHOWPIECE (animated orbs) -->
+<section id="color">
+  <div class="container">
+    <div class="duo">
+      <div class="panel">
+        <div class="orb2"></div>
+        <span class="pill-status">The signature</span>
+        <h3 class="h3">Yellow, the way we mean it.</h3>
+        <p class="lede">A warm, dense gold-yellow developed over eleven anodising passes. It shifts, quietly, in the light.</p>
+        <div class="cta-row"><a class="btn btn-accent" href="#reserve">Reserve in yellow</a><a class="btn btn-ghost" href="#">Other finishes</a></div>
+      </div>
+      <div class="panel dark">
+        <div class="orb2"></div>
+        <span class="pill-status">The making</span>
+        <h3 class="h3">Six weeks per hundred phones.</h3>
+        <p class="lede">Assembled in small runs by people whose names are on the box. Slow on purpose.</p>
+        <div class="cta-row"><a class="btn btn-light" href="#">The workshop</a><a class="btn btn-ghost" style="color:#fff;border-color:var(--outline-on-dark)" href="#">Our story</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 · JOURNAL / BLOG SLIDER -->
+<section id="journal">
+  <div class="container">
+    <div class="sec-head">
+      <div class="txt"><span class="eyebrow">Journal</span><h2 class="h2">Notes from the workshop.</h2></div>
+      <div class="round-btns">
+        <button class="round-btn" aria-label="Previous"><span class="ico">arrow_back</span></button>
+        <button class="round-btn" aria-label="Next"><span class="ico">arrow_forward</span></button>
+      </div>
+    </div>
+    <div class="rail">
+      <article class="card" style="flex-basis:320px"><div class="cover"></div><div class="body"><p class="eyebrow" style="font-size:var(--xs-size)">Jul 2026 · Craft</p><h3 class="h6">Why we anodise eleven times.</h3><a class="arrow" href="#">Read</a></div></article>
+      <article class="card" style="flex-basis:320px"><div class="cover alt"></div><div class="body"><p class="eyebrow" style="font-size:var(--xs-size)">Jun 2026 · Design</p><h3 class="h6">Choosing one camera on purpose.</h3><a class="arrow" href="#">Read</a></div></article>
+      <article class="card" style="flex-basis:320px"><div class="cover"></div><div class="body"><p class="eyebrow" style="font-size:var(--xs-size)">Jun 2026 · Studio</p><h3 class="h6">The weight of a good phone.</h3><a class="arrow" href="#">Read</a></div></article>
+      <article class="card" style="flex-basis:320px"><div class="cover alt"></div><div class="body"><p class="eyebrow" style="font-size:var(--xs-size)">May 2026 · Sound</p><h3 class="h6">Tuning speakers by ear.</h3><a class="arrow" href="#">Read</a></div></article>
+    </div>
+  </div>
+</section>
+
+<!-- 06 · DARK CTA BAND -->
+<section class="band" id="reserve">
+  <div class="orb"></div>
+  <div class="container">
+    <h2 class="h2" id="typed2" data-text="Own the yellow flagship."></h2>
+    <a class="btn btn-accent" href="#">Reserve for $99</a>
+  </div>
+</section>
+
+<!-- 07 · FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div><p class="lede" style="max-width:22ch">One phone. Made beautifully.</p></div>
+      <div><h4>Phone</h4><a href="#">Design</a><a href="#">Colors</a><a href="#">Specs</a><a href="#">Compare</a></div>
+      <div><h4>Studio</h4><a href="#">Our story</a><a href="#">Workshop</a><a href="#">Journal</a><a href="#">Careers</a></div>
+      <div><h4>Support</h4><a href="#">Contact</a><a href="#">Warranty</a><a href="#">Shipping</a><a href="#">Returns</a></div>
+    </div>
+    <div class="brand-huge">LUMA</div>
+    <div class="footer-legal"><span><span class="mark" style="display:inline-block;vertical-align:-3px;margin-right:8px"></span>© 2026 LUMA</span><span>Privacy · Terms · Cookies</span></div>
+  </div>
+</footer>
+
+<script>
+// Zero-reflow letter reveal: render all letters at final layout (no mid-word
+// break, no jump), then fade them in sequentially with a moving caret.
+function typeReveal(el, opts){
+  const text = el.dataset.text, speed = opts.speed || 42;
+  el.textContent = '';
+  const caret = document.createElement('span'); caret.className = 'caret';
+  // build words so wrapping happens at spaces, never mid-word
+  text.split(' ').forEach((word, wi, arr) => {
+    const w = document.createElement('span'); w.style.whiteSpace = 'nowrap';
+    [...word].forEach(ch => { const s = document.createElement('span'); s.className='letter'; s.textContent=ch; w.appendChild(s); });
+    el.appendChild(w);
+    if (wi < arr.length-1) el.appendChild(document.createTextNode(' '));
+  });
+  el.appendChild(caret);
+  const letters = el.querySelectorAll('.letter');
+  letters.forEach((l,i)=> setTimeout(()=> l.style.opacity = 1, i*speed));
+}
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ typeReveal(e.target,{speed:40}); io.unobserve(e.target); } });
+},{threshold:.4});
+io.observe(document.getElementById('typed'));
+io.observe(document.getElementById('typed2'));
+</script>
+</body>
+</html>

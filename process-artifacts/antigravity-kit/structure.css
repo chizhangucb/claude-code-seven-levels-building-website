@@ -1,0 +1,96 @@
+/* ============================================================
+   structure.css — load-bearing rules read from antigravity.google
+   These are the production moves that a screenshot cannot show.
+   Copy the PATTERN, not the pixels-as-decoration.
+   ============================================================ */
+
+/* --- The container: one max-width, symmetric page margins --- */
+.container{
+  max-width: calc(1728px + var(--page-margin) * 2);
+  margin: 0 auto;
+  padding: 0 var(--page-margin);           /* 72px gutters on desktop */
+}
+
+/* --- The hero display cut ---
+   Note: opsz is 144 (the SHARPEST optical cut), NOT matched to 107px.
+   The biggest text on the page uses the biggest optical size for max
+   crispness. Weight is 450 — between Regular and Medium. */
+.landing-main{
+  font-size: var(--landing-main-text-size);       /* 107px */
+  line-height: var(--landing-main-text-line-height);/* 107px — 1:1, tight */
+  letter-spacing: var(--landing-main-text-letter-spacing); /* -2.14px */
+  font-weight: 450;
+  font-variation-settings: "wdth" 100, "opsz" 144;
+}
+
+/* --- The heading scale ---
+   EVERY step: weight 450, pixel line-height, and opsz === the px size.
+   This is the single reason the type feels "designed" and not "big body". */
+.heading-00{ font-size: var(--9xl-size); line-height: var(--9xl-line-height); letter-spacing: var(--9xl-letter-spacing); font-weight: 450; font-variation-settings: "wdth" 100, "opsz" 144; }
+.heading-0 { font-size: var(--8xl-size); line-height: var(--8xl-line-height); letter-spacing: var(--8xl-letter-spacing); font-weight: 450; font-variation-settings: "wdth" 100, "opsz" 124; }
+.heading-1 { font-size: var(--7xl-size); line-height: var(--7xl-line-height); letter-spacing: var(--7xl-letter-spacing); font-weight: 450; font-variation-settings: "wdth" 100, "opsz" 98;  }
+.heading-2 { font-size: var(--6xl-size); line-height: var(--6xl-line-height); letter-spacing: var(--6xl-letter-spacing); font-weight: 450; font-variation-settings: "wdth" 100, "opsz" 72;  }
+.heading-3 { font-size: var(--5xl-size); line-height: var(--5xl-line-height); letter-spacing: var(--5xl-letter-spacing); font-weight: 450; font-variation-settings: "wdth" 100, "opsz" 54;  }
+.heading-4 { font-size: var(--4xl-size); line-height: var(--4xl-line-height); letter-spacing: var(--4xl-letter-spacing); font-weight: 450; font-variation-settings: "wdth" 100, "opsz" 42;  }
+.heading-5 { font-size: var(--3xl-size); line-height: var(--3xl-line-height); letter-spacing: var(--3xl-letter-spacing); font-weight: 450; font-variation-settings: "wdth" 100, "opsz" 32;  }
+.heading-6 { font-size: var(--2xl-size); line-height: var(--2xl-line-height); letter-spacing: var(--2xl-letter-spacing); font-weight: 450; font-variation-settings: "wdth" 100, "opsz" 28;  }
+.heading-7 { font-size: var(--xl-size);  line-height: var(--xl-line-height);  letter-spacing: var(--xl-letter-spacing);  font-weight: 450; font-variation-settings: "wdth" 100, "opsz" 24;  }
+
+/* --- Body base --- */
+body{
+  min-height: 100vh;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* --- The arrow link ---
+   Icon is a FONT glyph (Google Symbols "keyboard_arrow_right"), not an SVG.
+   It slides right on hover. Substitute Material Symbols Rounded. */
+.arrow-link, .arrow-link-left{
+  display: inline-flex;
+  align-items: center;
+  transition: .2s opacity;
+}
+.arrow-link:not(.arrow-link-left)::after{
+  content: "arrow_forward";
+  font-family: "Material Symbols Rounded";  /* source: "Google Symbols" */
+  font-size: 1.25em;
+  margin-left: var(--space-xs);
+  transition: .3s transform;
+}
+.arrow-link:not(.arrow-link-left):hover::after{ transform: translateX(50%); }
+
+/* --- Icon font axes (the Symbols detail) ---
+   Icons are a variable font too: FILL, wght, GRAD, ROND, opsz. */
+.icon         { font-variation-settings: "FILL" 0, "wght" 300, "GRAD" 0, "ROND" 50, "opsz" 48; }
+.icon--filled { font-variation-settings: "FILL" 1, "wght" 300, "GRAD" 0, "ROND" 50, "opsz" 48; }
+
+/* --- Nav ---
+   Sticky, 52px tall, translucent white with backdrop blur, hairline
+   bottom border via ALPHA outline (never a shadow). */
+.header{
+  position: sticky; top: 0; z-index: 100;
+  height: var(--nav-height);
+  background: rgba(255, 255, 255, .85);
+  backdrop-filter: saturate(180%) blur(20px);
+  border-bottom: 1px solid var(--outline-variant);
+}
+
+/* --- Buttons (reconstructed from computed styles) ---
+   Primary = on-surface (near-black) fill, white text — inverse.
+   Pill radius. CTA type uses opsz matched to its size + weight 450. */
+.button{
+  display: inline-flex; align-items: center; gap: var(--space-sm);
+  height: 40px; padding: 0 20px;
+  border-radius: var(--shape-corner-rounded);
+  font-size: var(--cta-sm-size); line-height: var(--cta-sm-line-height);
+  letter-spacing: var(--cta-sm-letter-spacing);
+  font-weight: 450; font-variation-settings: "wdth" 100, "opsz" 14.5;
+  border: 1px solid transparent; cursor: pointer;
+  transition: .2s background var(--ease-out-expo);
+}
+.button-primary{ background: var(--on-surface); color: #fff; }
+.button-primary:hover{ background: var(--palette-grey-900); }
+.button-secondary{ background: transparent; color: var(--on-surface); border-color: var(--outline); }
+.button-secondary:hover{ background: var(--palette-grey-15); }

@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SunCore — the Yellow One</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌞</text></svg>">
+<style>
+  :root {
+    --yellow: #FFDE21;
+    --black: #0c0c0c;
+    --panel: #101010;
+    --card: #e9e8e4;
+    --seam: rgba(255,255,255,0.09);
+    --dim: rgba(255,255,255,0.42);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: #838383;
+    font-family: "Helvetica Neue", -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+    color: #f4f4f2;
+    -webkit-font-smoothing: antialiased;
+    padding: 44px;
+    min-height: 100vh;
+  }
+
+  .site {
+    background: var(--black);
+    min-height: calc(100vh - 88px);
+    display: grid;
+    grid-template-columns: 29% 42% 29%;
+    grid-template-rows: 76px 1fr;
+  }
+
+  /* ---------- Nav ---------- */
+  .nav-left, .nav-center, .nav-right {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--seam);
+  }
+  .nav-left { padding: 0 34px; border-right: 1px solid var(--seam); }
+  .nav-right { padding: 0 34px; justify-content: flex-end; gap: 26px; border-left: 1px solid var(--seam); }
+  .nav-center { justify-content: center; gap: 44px; background: var(--panel); }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+  }
+  .logo .mark {
+    width: 18px; height: 18px;
+    background: var(--yellow);
+    clip-path: polygon(50% 0, 62% 38%, 100% 50%, 62% 62%, 50% 100%, 38% 62%, 0 50%, 38% 38%);
+  }
+  .logo sup { font-size: 0.55rem; color: var(--dim); }
+
+  .nav-center a {
+    color: var(--dim);
+    text-decoration: none;
+    font-size: 0.86rem;
+    font-weight: 400;
+    transition: color 0.2s;
+  }
+  .nav-center a:hover { color: #fff; }
+
+  .icon-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #f4f4f2;
+    display: grid;
+    place-items: center;
+    padding: 4px;
+  }
+  .icon-btn svg { display: block; }
+  .icon-btn:hover { opacity: 0.7; }
+
+  /* ---------- Columns ---------- */
+  .col-left, .col-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 56px 40px 48px;
+    min-height: 0;
+  }
+  .col-left  { border-right: 1px solid var(--seam); }
+  .col-right { border-left: 1px solid var(--seam); align-items: center; text-align: center; }
+
+  /* Left column */
+  .headline {
+    font-size: clamp(2.6rem, 3.6vw, 3.6rem);
+    font-weight: 300;
+    line-height: 1.14;
+    letter-spacing: -0.015em;
+    color: #eceae4;
+  }
+  .headline .sun {
+    display: inline-block;
+    width: 0.78em; height: 0.78em;
+    border-radius: 50%;
+    background: radial-gradient(circle at 32% 30%, #fff3a6, var(--yellow) 45%, #d9a800 90%);
+    box-shadow: 0 0 24px rgba(255, 222, 33, 0.55);
+    vertical-align: -0.06em;
+    margin-left: 0.12em;
+  }
+
+  .left-rule { border: none; border-top: 1px solid var(--seam); width: 100%; }
+
+  .left-bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+    text-align: center;
+  }
+  .swatches { display: flex; }
+  .swatch {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    border: 3px solid var(--black);
+  }
+  .swatch.s1 { background: radial-gradient(circle at 35% 30%, #fff2a0, #ffde21 55%, #e0af00); }
+  .swatch.s2 { background: radial-gradient(circle at 35% 30%, #fffbe0, #fff06e 55%, #f5c400); margin-left: -12px; }
+  .left-caption {
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    line-height: 1.7;
+    color: var(--dim);
+    text-transform: uppercase;
+    max-width: 220px;
+  }
+
+  /* ---------- Center card ---------- */
+  .col-center {
+    background: var(--card);
+    color: #101010;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 44px 52px;
+    min-height: 0;
+  }
+
+  .stage {
+    position: relative;
+    width: 100%;
+    flex: 1 1 auto;
+    min-height: 340px;
+    display: flex;
+    justify-content: center;
+  }
+  .stage svg { width: 100%; height: 100%; display: block; }
+
+  .overlay-copy {
+    position: absolute;
+    top: 41%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    text-align: center;
+    font-size: clamp(1.35rem, 1.9vw, 1.8rem);
+    font-weight: 400;
+    color: #fdfdfb;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.9), 0 2px 22px rgba(0,0,0,0.7);
+    letter-spacing: 0.01em;
+    line-height: 1.4;
+    pointer-events: none;
+  }
+  .overlay-copy .line2 { display: block; padding-left: 3.2em; }
+
+  .cta {
+    margin-top: -26px;
+    z-index: 2;
+    background: var(--yellow);
+    color: #101010;
+    border: none;
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 500;
+    padding: 16px 58px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .cta:hover { background: #ffe95c; transform: translateY(-1px); }
+
+  .pill {
+    margin-top: 26px;
+    font-size: 0.62rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    padding: 7px 16px;
+    border: 1px solid rgba(16,16,16,0.45);
+    border-radius: 999px;
+    color: #2b2b2b;
+  }
+
+  .pixels {
+    margin-top: 22px;
+    display: grid;
+    grid-template-columns: repeat(2, 9px);
+    gap: 3px;
+  }
+  .pixels span { width: 9px; height: 9px; background: var(--yellow); }
+  .pixels span:nth-child(2) { background: #caa500; }
+  .pixels span:nth-child(3) { background: #ffe95c; }
+
+  .center-headline {
+    margin-top: 20px;
+    text-align: center;
+    font-size: clamp(1.35rem, 1.9vw, 1.8rem);
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+    max-width: 340px;
+  }
+
+  /* ---------- Right column ---------- */
+  .word-list { list-style: none; margin-top: 26px; }
+  .word-list li {
+    font-size: clamp(1.6rem, 2.2vw, 2.1rem);
+    font-weight: 300;
+    line-height: 1.5;
+    color: rgba(255,255,255,0.28);
+    cursor: pointer;
+    transition: color 0.25s;
+  }
+  .word-list li:hover { color: rgba(255,255,255,0.6); }
+  .word-list li.active { color: #ffffff; font-weight: 400; }
+
+  .right-rule { border: none; border-top: 1px solid var(--seam); width: 100%; }
+
+  .right-bottom { width: 100%; display: flex; flex-direction: column; align-items: center; gap: 14px; }
+  .mini-card {
+    width: min(200px, 80%);
+    aspect-ratio: 16 / 10;
+    background:
+      radial-gradient(circle at 20% 80%, #d9a800 0%, transparent 50%),
+      radial-gradient(circle at 75% 25%, #fff3a6 0%, transparent 45%),
+      radial-gradient(circle at 55% 60%, var(--yellow) 0%, #7a5c00 80%);
+    position: relative;
+    overflow: hidden;
+  }
+  .mini-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(115deg, transparent 42%, rgba(0,0,0,0.35) 43%, transparent 46%),
+      linear-gradient(65deg, transparent 60%, rgba(255,255,255,0.35) 61%, transparent 65%);
+  }
+  .mini-caption {
+    width: min(200px, 80%);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    font-size: 0.62rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    color: var(--dim);
+    text-transform: uppercase;
+    text-align: left;
+    line-height: 1.6;
+  }
+  .mini-caption .arrow { color: #f4f4f2; font-size: 0.8rem; }
+
+  /* ---------- Content bands (Models / Colors / Stories) ---------- */
+  .band {
+    background: var(--black);
+    margin-top: 24px;
+    padding: 84px 56px 96px;
+    scroll-margin-top: 24px;
+  }
+  .band-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 24px;
+    border-bottom: 1px solid var(--seam);
+    padding-bottom: 28px;
+    margin-bottom: 56px;
+  }
+  .band-label {
+    font-size: 0.62rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--yellow);
+  }
+  .band-title {
+    font-size: clamp(2rem, 3.4vw, 3rem);
+    font-weight: 300;
+    letter-spacing: -0.015em;
+    color: #eceae4;
+  }
+
+  /* Models */
+  .model-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1px;
+    background: var(--seam);
+    border: 1px solid var(--seam);
+  }
+  .model {
+    background: var(--panel);
+    padding: 34px 28px 38px;
+    transition: background 0.25s;
+    cursor: pointer;
+  }
+  .model:hover { background: #181816; }
+  .model .thumb {
+    height: 130px;
+    margin-bottom: 26px;
+    background:
+      radial-gradient(circle at 50% 45%, rgba(255, 222, 33, var(--tint, 0.45)) 0%, transparent 60%),
+      radial-gradient(#2a2a28 1.4px, transparent 1.6px);
+    background-size: 100% 100%, 9px 9px;
+    display: grid;
+    place-items: center;
+  }
+  .model .thumb .chip {
+    width: 44px; height: 78px;
+    border-radius: 12px;
+    background: linear-gradient(160deg, #ffe95c, var(--yellow) 50%, #d9a800);
+    box-shadow: 0 8px 22px rgba(0,0,0,0.5);
+  }
+  .model .year {
+    font-size: 0.62rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    color: var(--dim);
+  }
+  .model h3 {
+    font-size: 1.35rem;
+    font-weight: 400;
+    margin: 8px 0 10px;
+    color: #f2f0ea;
+  }
+  .model p { font-size: 0.82rem; line-height: 1.65; color: var(--dim); }
+
+  /* Colors */
+  .color-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 40px;
+  }
+  .shade { text-align: center; }
+  .shade .dot {
+    width: 130px; height: 130px;
+    border-radius: 50%;
+    margin: 0 auto 22px;
+    box-shadow: inset 0 -10px 24px rgba(0,0,0,0.25), 0 16px 36px rgba(0,0,0,0.45);
+    transition: transform 0.3s;
+  }
+  .shade:hover .dot { transform: scale(1.07); }
+  .shade h3 { font-size: 1.1rem; font-weight: 400; color: #f2f0ea; }
+  .shade .hex {
+    display: block;
+    margin-top: 6px;
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    color: var(--dim);
+  }
+  .shade .model-tag {
+    display: block;
+    margin-top: 10px;
+    font-size: 0.62rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255, 222, 33, 0.7);
+  }
+
+  /* Stories */
+  .story-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 56px;
+  }
+  .story blockquote {
+    font-size: clamp(1.25rem, 1.8vw, 1.6rem);
+    font-weight: 300;
+    line-height: 1.45;
+    color: #e8e6df;
+  }
+  .story blockquote::before { content: "“"; color: var(--yellow); }
+  .story blockquote::after  { content: "”"; color: var(--yellow); }
+  .story cite {
+    display: block;
+    margin-top: 20px;
+    font-style: normal;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--dim);
+  }
+
+  /* Footer strip */
+  .foot {
+    background: var(--black);
+    margin-top: 24px;
+    padding: 26px 56px;
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    font-size: 0.66rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--dim);
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 940px) {
+    body { padding: 16px; }
+    .site {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto;
+      min-height: auto;
+    }
+    .nav-center { order: -1; }
+    .nav-left, .nav-right { border: none; border-bottom: 1px solid var(--seam); }
+    .nav-right { display: none; }
+    .col-left, .col-right { border: none; gap: 44px; align-items: center; text-align: center; padding: 44px 28px; }
+    .left-rule, .right-rule { display: none; }
+    .col-center { padding: 0 24px 44px; }
+    .band { padding: 56px 24px 64px; margin-top: 16px; }
+    .band-head { flex-direction: column; gap: 10px; }
+    .foot { padding: 22px 24px; flex-direction: column; gap: 6px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<div class="site">
+
+  <!-- Nav -->
+  <div class="nav-left">
+    <div class="logo"><span class="mark"></span>SunCore<sup>®</sup></div>
+  </div>
+  <div class="nav-center">
+    <a href="#models">Models</a>
+    <a href="#colors">Colors</a>
+    <a href="#stories">Stories</a>
+  </div>
+  <div class="nav-right">
+    <button class="icon-btn" aria-label="Search">
+      <svg width="17" height="17" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="1.5">
+        <circle cx="7" cy="7" r="5.4"/><line x1="11.2" y1="11.2" x2="16" y2="16"/>
+      </svg>
+    </button>
+    <button class="icon-btn" aria-label="Menu">
+      <svg width="19" height="13" viewBox="0 0 19 13" stroke="currentColor" stroke-width="1.5">
+        <line x1="0" y1="1" x2="19" y2="1"/><line x1="0" y1="6.5" x2="19" y2="6.5"/><line x1="0" y1="12" x2="19" y2="12"/>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Left column -->
+  <div class="col-left">
+    <h1 class="headline">The<br>Yellow<span class="sun"></span><br>One</h1>
+    <hr class="left-rule">
+    <div class="left-bottom">
+      <div class="swatches"><span class="swatch s1"></span><span class="swatch s2"></span></div>
+      <p class="left-caption">The only iPhone that announces itself from across the room.</p>
+    </div>
+  </div>
+
+  <!-- Center card -->
+  <div class="col-center">
+    <div class="stage">
+      <!-- Halftone iPhone -->
+      <svg viewBox="0 0 400 560" xmlns="http://www.w3.org/2000/svg" aria-label="Halftone yellow iPhone">
+        <defs>
+          <pattern id="dotsS" width="8" height="8" patternUnits="userSpaceOnUse">
+            <circle cx="4" cy="4" r="1.5" fill="#131313"/>
+          </pattern>
+          <pattern id="dotsM" width="10" height="10" patternUnits="userSpaceOnUse">
+            <circle cx="5" cy="5" r="4.1" fill="#131313"/>
+          </pattern>
+          <pattern id="dotsY" width="9" height="9" patternUnits="userSpaceOnUse">
+            <circle cx="4.5" cy="4.5" r="2.4" fill="#e3b800"/>
+          </pattern>
+          <radialGradient id="fadeCore" cx="50%" cy="42%" r="62%">
+            <stop offset="0%" stop-color="#fff"/>
+            <stop offset="55%" stop-color="#e8e8e8"/>
+            <stop offset="100%" stop-color="#1a1a1a"/>
+          </radialGradient>
+          <mask id="coreMask">
+            <rect width="400" height="560" fill="url(#fadeCore)"/>
+          </mask>
+          <filter id="soften" x="-40%" y="-40%" width="180%" height="180%">
+            <feGaussianBlur stdDeviation="18"/>
+          </filter>
+        </defs>
+
+        <!-- phone body: dense small dots -->
+        <rect x="96" y="30" width="208" height="440" rx="46" fill="url(#dotsS)"/>
+        <!-- inner screen: bolder dots, faded by radial mask -->
+        <rect x="112" y="46" width="176" height="408" rx="34" fill="url(#dotsM)" mask="url(#coreMask)"/>
+        <!-- yellow edge glow: yellow dots hugging the frame -->
+        <rect x="96" y="30" width="208" height="440" rx="46" fill="none" stroke="url(#dotsY)" stroke-width="14"/>
+        <!-- dynamic island -->
+        <rect x="168" y="62" width="64" height="18" rx="9" fill="#131313"/>
+        <!-- dense core behind overlay copy -->
+        <ellipse cx="200" cy="235" rx="105" ry="85" fill="#141414" opacity="0.88" filter="url(#soften)"/>
+        <!-- floor dots -->
+        <ellipse cx="200" cy="505" rx="120" ry="12" fill="url(#dotsS)" opacity="0.35"/>
+      </svg>
+      <p class="overlay-copy">joy…<span class="line2">at the core</span></p>
+    </div>
+
+    <button class="cta">Get the yellow one</button>
+    <span class="pill">ABOUT YELLOW</span>
+    <div class="pixels"><span></span><span></span><span></span></div>
+    <h2 class="center-headline">Pure optimism, milled from aluminum and light</h2>
+  </div>
+
+  <!-- Right column -->
+  <div class="col-right">
+    <ul class="word-list">
+      <li>Shine</li>
+      <li>Glow</li>
+      <li class="active">Radiate</li>
+      <li>Beam</li>
+      <li>Dazzle</li>
+    </ul>
+    <hr class="right-rule">
+    <div class="right-bottom">
+      <div class="mini-card"></div>
+      <div class="mini-caption"><span>Sunny<br>Side</span><span class="arrow">↗</span></div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Models -->
+<section class="band" id="models">
+  <div class="band-head">
+    <span class="band-label">01 — Models</span>
+    <h2 class="band-title">Every yellow, ever shipped</h2>
+  </div>
+  <div class="model-grid">
+    <div class="model" style="--tint:0.55">
+      <div class="thumb"><span class="chip"></span></div>
+      <span class="year">2013</span>
+      <h3>iPhone 5c</h3>
+      <p>The original ray. Unapologetically plastic, gloriously saturated — the first iPhone to wear yellow.</p>
+    </div>
+    <div class="model" style="--tint:0.42">
+      <div class="thumb"><span class="chip"></span></div>
+      <span class="year">2018</span>
+      <h3>iPhone XR</h3>
+      <p>Yellow goes big-screen: 6.1 inches of Liquid Retina wrapped in color-infused glass.</p>
+    </div>
+    <div class="model" style="--tint:0.3">
+      <div class="thumb"><span class="chip"></span></div>
+      <span class="year">2019</span>
+      <h3>iPhone 11</h3>
+      <p>The pastel encore. A softer, mellower yellow — arguably the most-loved of them all.</p>
+    </div>
+    <div class="model" style="--tint:0.48">
+      <div class="thumb"><span class="chip"></span></div>
+      <span class="year">2023</span>
+      <h3>iPhone 14 &amp; 14 Plus</h3>
+      <p>The springtime surprise — a brand-new yellow dropped mid-cycle, in March. Sunshine on demand.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Colors -->
+<section class="band" id="colors">
+  <div class="band-head">
+    <span class="band-label">02 — Colors</span>
+    <h2 class="band-title">Four generations of sunshine</h2>
+  </div>
+  <div class="color-row">
+    <div class="shade">
+      <div class="dot" style="background: radial-gradient(circle at 32% 28%, #fff6a8, #fde94f 55%, #d9b800);"></div>
+      <h3>Lemonade</h3>
+      <span class="hex">≈ #FDE94F</span>
+      <span class="model-tag">iPhone 5c</span>
+    </div>
+    <div class="shade">
+      <div class="dot" style="background: radial-gradient(circle at 32% 28%, #fce9a2, #f7d74d 55%, #cfa400);"></div>
+      <h3>Sunbeam</h3>
+      <span class="hex">≈ #F7D74D</span>
+      <span class="model-tag">iPhone XR</span>
+    </div>
+    <div class="shade">
+      <div class="dot" style="background: radial-gradient(circle at 32% 28%, #fff7cf, #ffe681 55%, #e3c34e);"></div>
+      <h3>Mellow</h3>
+      <span class="hex">≈ #FFE681</span>
+      <span class="model-tag">iPhone 11</span>
+    </div>
+    <div class="shade">
+      <div class="dot" style="background: radial-gradient(circle at 32% 28%, #fdf0a0, #f9de4b 55%, #d4af00);"></div>
+      <h3>Daffodil</h3>
+      <span class="hex">≈ #F9DE4B</span>
+      <span class="model-tag">iPhone 14</span>
+    </div>
+  </div>
+</section>
+
+<!-- Stories -->
+<section class="band" id="stories">
+  <div class="band-head">
+    <span class="band-label">03 — Stories</span>
+    <h2 class="band-title">Notes from the sunny side</h2>
+  </div>
+  <div class="story-grid">
+    <div class="story">
+      <blockquote>I bought the yellow XR to cheer myself up during finals. Five years later I still can't switch — every other phone feels like a rainy day.</blockquote>
+      <cite>— Mina, kept it for 5 years</cite>
+    </div>
+    <div class="story">
+      <blockquote>My whole family has black iPhones. At dinner there are six identical slabs on the table, and then there's mine, glowing like a little sun.</blockquote>
+      <cite>— Theo, easily found at dinner</cite>
+    </div>
+    <div class="story">
+      <blockquote>Apple releasing a new yellow in March, out of nowhere, was the best product-launch plot twist in years. I pre-ordered in four minutes.</blockquote>
+      <cite>— Priya, four-minute decision</cite>
+    </div>
+  </div>
+</section>
+
+<footer class="foot">
+  <span>SunCore® — a fan-made tribute. Not affiliated with Apple Inc.</span>
+  <span>Made with 💛 on the sunny side</span>
+</footer>
+
+<script>
+  // Right-column word list: click to move the highlight
+  document.querySelectorAll('.word-list li').forEach(li => {
+    li.addEventListener('click', () => {
+      document.querySelector('.word-list .active')?.classList.remove('active');
+      li.classList.add('active');
+    });
+  });
+
+  // CTA scrolls to the models section
+  document.querySelector('.cta').addEventListener('click', () => {
+    document.getElementById('models').scrollIntoView({ behavior: 'smooth' });
+  });
+</script>
+
+</body>
+</html>
