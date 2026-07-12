@@ -294,3 +294,12 @@ details.prompt .outcome strong { color: var(--ink); }
   .nav-levels { display: none; }
   .delta { grid-template-columns: 1fr; }
 }
+
+/* --- per-level cost & time metrics --- */
+.metrics-strip { border: 1px solid var(--line, rgba(26,23,18,.12)); border-radius: 14px; padding: 18px 22px; background: #fffdf6; display: grid; gap: 10px; }
+.metric-row { display: flex; flex-wrap: wrap; align-items: baseline; gap: 18px; }
+.metric-row .metric-model { font-weight: 650; min-width: 72px; color: #7a5d00; }
+.metric-row .metric { font-size: .92em; color: #6f675b; }
+.metric-row .metric b { color: #1a1712; font-weight: 650; font-variant-numeric: tabular-nums; }
+.metric-foot { font-size: .78em; color: #6f675b; margin: 4px 0 0; }
+main[data-compare] .metrics-strip { margin: 0 0 18px; }

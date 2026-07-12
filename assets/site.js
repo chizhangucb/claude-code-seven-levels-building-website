@@ -62,6 +62,8 @@ if (compare) {
     }
     levelButtons.forEach((b) => b.setAttribute("aria-pressed", b.dataset.level == n));
     history.replaceState(null, "", `?level=${n}`);
+    const metricsEl = compare.querySelector("[data-compare-metrics]");
+    if (metricsEl && window.renderLevelMetrics) metricsEl.innerHTML = window.renderLevelMetrics(n);
   }
 
   function attachSync(iframe, model) {
