@@ -1,8 +1,8 @@
-# Seven Levels of Building Beautiful Websites with Claude Code
+# Seven Levels, Round 1: Yellow iPhone
 
-A hands-on replication of Jack Roberts' [“7 Levels of Building Claude Code Websites”](https://www.youtube.com/watch?v=AFRL9dtUHeI) — run **twice**, with Claude **Fable 5** and Claude **Opus**, on the same product (a yellow iPhone), with the same prompts, references, and skills. Every level's output is preserved verbatim.
+The same website built seven times, each level one technique better — and the whole ladder run **twice with identical prompts**: once on **Claude Fable 5**, once on **Claude Opus**. Every level's output is preserved verbatim. This is round 1, a hands-on replication of Jack Roberts' ["7 Levels of Building Claude Code Websites"](https://www.youtube.com/watch?v=AFRL9dtUHeI), selling a **yellow iPhone**. Round 2 reran the whole ladder on a [pink Cybertruck](https://github.com/chizhangucb/seven-levels-round2-pink-cybertruck) — orchestrated headlessly by an agent.
 
-**Live site:** the tutorial walkthrough, all 14 demos, a Fable-vs-Opus compare view with synced scrolling, and the talk slides — deployed on Vercel from this repo.
+**Live site: https://claude-code-seven-levels-building-website.vercel.app** — every level's writeup with the exact prompts, all 14 demos, a Fable-vs-Opus compare view with synced scrolling, and the talk slides.
 
 ## The ladder
 
@@ -38,10 +38,15 @@ No build step — everything is static HTML.
 
 ## Highlights worth reading
 
-- **The overwrite incident** ([docs/prompt-log/level-6.md](docs/prompt-log/level-6.md)): two concurrent sessions raced on one file; the model recovered the lost work by mining the other session's transcript.
-- **Extraction converges** ([docs/prompt-log/level-7.md](docs/prompt-log/level-7.md)): both models independently invented near-identical brand names from the same extracted design language.
+- **The overwrite incident** ([docs/prompt-log/level-6.md](docs/prompt-log/level-6.md)): two concurrent sessions raced on one file; the model recovered the lost work by mining the other session's transcript. (Designed out in round 2 — it didn't recur.)
+- **Extraction converges** ([docs/prompt-log/level-7.md](docs/prompt-log/level-7.md)): both models independently invented near-identical brand names ("Lume"/"LUMA") from the same extracted design language.
 - **Divergent engineering**: same component-integration ask — Fable inlined the library, Opus imported it from a CDN.
+- **The bill**: Fable 5 ~$102 / ~96 min machine time across the ladder; Opus ~$36 / ~61 min — the interactive, hand-driven baseline that round 2's orchestrated run beat by ~2.7×.
+
+## The framework
+
+This experiment is now a reusable, product-agnostic framework — the prompt pack, runbook, orchestration harness, and metrics methodology live at [seven-levels-framework](https://github.com/chizhangucb/seven-levels-framework). Pick a product, fill the placeholders, run your own round.
 
 ## Credit
 
-The seven-level framework and prompts are from [Jack Roberts' video](https://www.youtube.com/watch?v=AFRL9dtUHeI). Skills used: [ui-ux-pro-max](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill), [power-design](https://github.com/ItsssssJack/power-design). Tools: [Firecrawl](https://firecrawl.dev), [OpenArt](https://openart.ai), [21st.dev](https://21st.dev), [balloons-js](https://github.com/arturbien/balloons-js).
+The seven-level framework and original prompts are from [Jack Roberts' video](https://www.youtube.com/watch?v=AFRL9dtUHeI). Skills used: [ui-ux-pro-max](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill), [power-design](https://github.com/ItsssssJack/power-design). Tools: [Firecrawl](https://firecrawl.dev), [OpenArt](https://openart.ai), [21st.dev](https://21st.dev), [balloons-js](https://github.com/arturbien/balloons-js).
