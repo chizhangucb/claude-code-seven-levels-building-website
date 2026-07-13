@@ -13,8 +13,8 @@ site at each level. Deliverables: interactive tutorial site, 31-slide HTML deck,
 export, curated prompt log, per-level cost/time metrics, and a 60-min internal talk
 for Chi's colleagues at Kite AI.
 
-- **GitHub (public):** https://github.com/chizhangucb/claude-code-seven-levels-building-website
-- **Production:** https://seven-levels-round1-yellow-iphone.vercel.app
+- **GitHub (public):** https://github.com/chizhangucb/design-seven-levels-round1-yellow-iphone
+- **Production:** https://design-seven-levels-round1-yellow-iphone.vercel.app
   (Vercel project name matches; the old `claude-code-seven-levels.vercel.app` domain
   was removed and now 404s)
 

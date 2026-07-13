@@ -1,8 +1,8 @@
 # Seven Levels, Round 1: Yellow iPhone
 
-The same website built seven times, each level one technique better — and the whole ladder run **twice with identical prompts**: once on **Claude Fable 5**, once on **Claude Opus**. Every level's output is preserved verbatim. This is round 1, a hands-on replication of Jack Roberts' ["7 Levels of Building Claude Code Websites"](https://www.youtube.com/watch?v=AFRL9dtUHeI), selling a **yellow iPhone**. Round 2 reran the whole ladder on a [pink Cybertruck](https://github.com/chizhangucb/seven-levels-round2-pink-cybertruck) — orchestrated headlessly by an agent.
+The same website built seven times, each level one technique better — and the whole ladder run **twice with identical prompts**: once on **Claude Fable 5**, once on **Claude Opus**. Every level's output is preserved verbatim. This is round 1, a hands-on replication of Jack Roberts' ["7 Levels of Building Claude Code Websites"](https://www.youtube.com/watch?v=AFRL9dtUHeI), selling a **yellow iPhone**. Round 2 reran the whole ladder on a [pink Cybertruck](https://github.com/chizhangucb/design-seven-levels-round2-pink-cybertruck) — orchestrated headlessly by an agent.
 
-**Live site: https://seven-levels-round1-yellow-iphone.vercel.app** — every level's writeup with the exact prompts, all 14 demos, a Fable-vs-Opus compare view with synced scrolling, and the talk slides.
+**Live site: https://design-seven-levels-round1-yellow-iphone.vercel.app** — every level's writeup with the exact prompts, all 14 demos, a Fable-vs-Opus compare view with synced scrolling, and the talk slides.
 
 ## The ladder
 
@@ -45,7 +45,7 @@ No build step — everything is static HTML.
 
 ## The framework
 
-This experiment is now a reusable, product-agnostic framework — the prompt pack, runbook, orchestration harness, and metrics methodology live at [seven-levels-framework](https://github.com/chizhangucb/seven-levels-framework). Pick a product, fill the placeholders, run your own round.
+This experiment is now a reusable, product-agnostic framework — the prompt pack, runbook, orchestration harness, and metrics methodology live at [design-seven-levels-framework](https://github.com/chizhangucb/design-seven-levels-framework). Pick a product, fill the placeholders, run your own round.
 
 ## Credit
 
